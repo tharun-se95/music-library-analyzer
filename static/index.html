@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Library Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🎵 Music Analyzer</div>
+        </header>
+
+        <main>
+            <section class="control-panel">
+                <div class="input-group">
+                    <input type="text" id="directoryInput" placeholder="/path/to/your/music" value="/Users/tharunk/Music/Downloaded by MediaHuman">
+                    <button id="scanBtn" onclick="startScan()">Start Analysis</button>
+                </div>
+            </section>
+
+            <section class="stats-grid">
+                <div class="card stat-card">
+                    <h3>Files Processed</h3>
+                    <div class="value" id="processedCount">0</div>
+                    <div class="sub-value">of <span id="totalCount">0</span></div>
+                </div>
+                <div class="card stat-card">
+                    <h3>Current Status</h3>
+                    <div class="value status-text" id="statusText">Ready</div>
+                </div>
+            </section>
+
+            <section class="console-card">
+                <div class="console-header">
+                    <span>Live Log</span>
+                    <span class="indicator" id="activityIndicator"></span>
+                </div>
+                <div class="console-output" id="consoleOutput">
+                    <div class="log-entry">Waiting to start...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>

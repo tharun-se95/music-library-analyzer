@@ -1,0 +1,9 @@
+librosa
+spotipy
+mutagen
+numpy
+scipy
+python-dotenv
+fastapi
+uvicorn
+websockets
