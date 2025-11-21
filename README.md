@@ -1,6 +1,7 @@
-# Music Library Analyzer 🎵
+# 💀 SkullKrush Music Analyzer
+> **A Product of SkullKrush Studios**
 
-**Music Library Analyzer** is a powerful Python tool that automatically analyzes your local music collection and enriches it with advanced musical data. It combines state-of-the-art audio analysis with the vast metadata of Spotify to give you a deeper understanding of your library.
+A powerful, modern tool to analyze your local music library and tag files with BPM, Key, Energy, and Spotify Metadata. It combines state-of-the-art audio analysis with the vast metadata of Spotify to give you a deeper understanding of your library.
 
 ## ✨ Features
 

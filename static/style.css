@@ -6,6 +6,7 @@
     --text-secondary: #94a3b8;
     --border-color: rgba(255, 255, 255, 0.1);
     --font-family: 'Inter', sans-serif;
+    --font-heading: 'Orbitron', sans-serif;
 }
 
 body {
@@ -17,28 +18,60 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    background-image: radial-gradient(circle at top right, #1e293b 0%, transparent 40%),
-                      radial-gradient(circle at bottom left, #1e1b4b 0%, transparent 40%);
+    background-image: radial-gradient(circle at top right, #312e81 0%, transparent 40%),
+        radial-gradient(circle at bottom left, #4c1d95 0%, transparent 40%);
 }
 
 .container {
     width: 100%;
     max-width: 900px;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     text-align: center;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #f472b6, #a78bfa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+}
+
+.logo .highlight {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.studio-name {
+    font-family: var(--font-heading);
+    color: #a78bfa;
 }
 
 .card {
@@ -171,7 +204,7 @@ button:disabled {
 .log-entry {
     margin-bottom: 0.5rem;
     line-height: 1.4;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding-bottom: 0.25rem;
 }
 
