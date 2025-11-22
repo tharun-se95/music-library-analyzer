@@ -18,38 +18,400 @@
         <header>
             <div class="logo">💀 SkullKrush <span class="highlight">Analyzer</span></div>
             <div class="subtitle">Professional Music Analysis Tool</div>
+
+            <nav class="main-nav">
+                <button class="nav-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+                <button class="nav-btn" onclick="switchTab('library')">Libraries</button>
+                <button class="nav-btn" onclick="switchTab('playlists')">Playlists</button>
+            </nav>
         </header>
 
         <main>
-            <section class="control-panel">
-                <div class="input-group">
-                    <input type="text" id="directoryInput" placeholder="/path/to/your/music"
-                        value="/Users/tharunk/Music/Downloaded by MediaHuman">
-                    <button id="scanBtn" onclick="startScan()">Start Analysis</button>
-                </div>
-            </section>
+            <!-- DASHBOARD TAB -->
+            <div id="dashboard-tab" class="tab-content active">
+                <section class="control-panel">
+                    <div class="input-group">
+                        <input type="text" id="directoryInput" placeholder="/path/to/your/music"
+                            value="/Users/tharunk/Music/Downloaded by MediaHuman">
+                        <button id="browseBtn" onclick="openFileBrowser()" class="secondary-btn">Browse</button>
+                        <button id="scanBtn" onclick="startScan()">Start Analysis</button>
+                        <button id="stopBtn" onclick="stopScan()" class="stop-btn" style="display: none;">Stop Analysis</button>
+                    </div>
+                    <div class="options-row" style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="forceAnalyze">
+                        <label for="forceAnalyze" style="color: var(--text-secondary); cursor: pointer;">Force
+                            Re-analyze (Overwrite existing tags)</label>
+                    </div>
+                </section>
 
-            <section class="stats-grid">
-                <div class="card stat-card">
-                    <h3>Files Processed</h3>
-                    <div class="value" id="processedCount">0</div>
-                    <div class="sub-value">of <span id="totalCount">0</span></div>
+                <!-- File Browser Modal -->
+                <div id="fileBrowserModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Select Directory</h3>
+                            <span class="close" onclick="closeFileBrowser()">&times;</span>
+                        </div>
+                        <div class="current-path" id="browserCurrentPath"></div>
+                        <div class="file-list" id="fileList">
+                            <!-- Items will be injected here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="closeFileBrowser()" class="secondary-btn">Cancel</button>
+                            <button onclick="selectCurrentDirectory()">Select This Folder</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card stat-card">
-                    <h3>Current Status</h3>
-                    <div class="value status-text" id="statusText">Ready</div>
-                </div>
-            </section>
 
-            <section class="console-card">
-                <div class="console-header">
-                    <span>Live Log</span>
-                    <span class="indicator" id="activityIndicator"></span>
+                <section class="stats-grid">
+                    <div class="card stat-card">
+                        <h3>Files Processed</h3>
+                        <div class="value" id="processedCount">0</div>
+                        <div class="sub-value">of <span id="totalCount">0</span></div>
+                    </div>
+                    <div class="card stat-card">
+                        <h3>Current Status</h3>
+                        <div class="value status-text" id="statusText">Ready</div>
+                        <div class="current-file" id="currentFile" style="display: none;">
+                            <div class="current-filename" id="currentFilename"></div>
+                            <div class="current-progress">
+                                <div class="progress-bar-fill" id="progressBarFill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <div class="table-header">
+                        <h3>Music Files</h3>
+                        <span class="indicator" id="activityIndicator"></span>
+                    </div>
+                    <div class="table-container">
+                        <table id="analysisTable" class="rekordbox-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-status">Status</th>
+                                    <th class="col-title sortable" onclick="sortTable('title')">Title <span class="sort-indicator">↕</span></th>
+                                    <th class="col-artist sortable" onclick="sortTable('artist')">Artist <span class="sort-indicator">↕</span></th>
+                                    <th class="col-bpm sortable" onclick="sortTable('bpm')">BPM <span class="sort-indicator">↕</span></th>
+                                    <th class="col-key sortable" onclick="sortTable('key')">Key <span class="sort-indicator">↕</span></th>
+                                    <th class="col-energy sortable" onclick="sortTable('energy')">Energy <span class="sort-indicator">↕</span></th>
+                                    <th class="col-mood">Mood</th>
+                                    <th class="col-genre">Genre</th>
+                                    <th class="col-popularity sortable" onclick="sortTable('popularity')">Popularity <span class="sort-indicator">↕</span></th>
+                                    <th class="col-location">Location</th>
+                                </tr>
+                            </thead>
+                            <tbody id="analysisTableBody">
+                                <tr>
+                                    <td colspan="10" class="empty-state">Select a directory and start analysis to see files</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div> <!-- End Dashboard Tab -->
+
+            <!-- LIBRARY TAB -->
+            <div id="library-tab" class="tab-content">
+                <!-- Library Statistics (Hidden by default) -->
+                <section class="card" id="libraryStatsSection" style="display: none;">
+                    <div class="table-header">
+                        <h3>📊 Library Health & Statistics</h3>
+                        <button class="secondary-btn" onclick="toggleLibraryStats()">✕ Hide Stats</button>
+                    </div>
+                    <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-top: 1rem;">
+                        <div class="stat-card">
+                            <h3>Total Tracks</h3>
+                            <div class="value" id="statTotalTracks">-</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Health Score</h3>
+                            <div class="value" id="statHealthScore">-</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Missing Files</h3>
+                            <div class="value" id="statMissingFiles">-</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Incomplete</h3>
+                            <div class="value" id="statIncomplete">-</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.875rem;">Metadata Coverage</h4>
+                        <div class="coverage-grid" id="coverageGrid"></div>
+                    </div>
+                    <div class="library-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="secondary-btn" onclick="checkLibraryHealth()">🔍 Check Health</button>
+                        <button class="secondary-btn" onclick="cleanupOrphans(true)">🧹 Find Orphans</button>
+                        <button class="secondary-btn" onclick="removeDuplicates(true)">🔗 Find Duplicates</button>
+                    </div>
+                </section>
+
+                <section class="card control-panel">
+                    <div class="table-header">
+                        <h3>📚 Library Filters & Playlist Builder</h3>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <button class="secondary-btn" onclick="toggleFiltersAndBuilder()" id="toggleFiltersAndBuilderBtn">
+                                <span id="filtersAndBuilderToggleIcon">▼</span> Show Options
+                            </button>
+                            <button class="secondary-btn" onclick="showLibraryStats()">📊 Show Health Stats</button>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+                        Filter library tracks and generate intelligent playlists using harmonic mixing and energy curves
+                    </p>
+                    <div id="filtersAndBuilderContainer" style="display: none;">
+                        <!-- Library Filters -->
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="color: var(--text-primary); font-size: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">🔍 Library Filters</h4>
+                            <div class="filter-grid">
+                                <div class="filter-group">
+                                    <label>BPM Range: <span id="bpmRangeDisplay">60 - 180</span></label>
+                                    <div class="dual-range-container">
+                                        <input type="range" id="bpmMin" min="60" max="180" value="60" class="range-slider range-min">
+                                        <input type="range" id="bpmMax" min="60" max="180" value="180" class="range-slider range-max">
+                                        <div class="range-track"></div>
+                                    </div>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Energy: <span id="energyRangeDisplay">0.0 - 1.0</span></label>
+                                    <div class="dual-range-container">
+                                        <input type="range" id="energyMin" min="0" max="100" value="0" step="1" class="range-slider range-min">
+                                        <input type="range" id="energyMax" min="0" max="100" value="100" step="1" class="range-slider range-max">
+                                        <div class="range-track"></div>
+                                    </div>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Key</label>
+                                    <select id="keyFilter" class="input-sm">
+                                        <option value="">Any Key</option>
+                                        <option value="1A">1A (G# Minor)</option>
+                                        <option value="1B">1B (B Major)</option>
+                                        <option value="2A">2A (D# Minor)</option>
+                                        <option value="2B">2B (F# Major)</option>
+                                        <option value="3A">3A (Bb Minor)</option>
+                                        <option value="3B">3B (Db Major)</option>
+                                        <option value="4A">4A (F Minor)</option>
+                                        <option value="4B">4B (Ab Major)</option>
+                                        <option value="5A">5A (C Minor)</option>
+                                        <option value="5B">5B (Eb Major)</option>
+                                        <option value="6A">6A (G Minor)</option>
+                                        <option value="6B">6B (Bb Major)</option>
+                                        <option value="7A">7A (D Minor)</option>
+                                        <option value="7B">7B (F Major)</option>
+                                        <option value="8A">8A (A Minor)</option>
+                                        <option value="8B">8B (C Major)</option>
+                                        <option value="9A">9A (E Minor)</option>
+                                        <option value="9B">9B (G Major)</option>
+                                        <option value="10A">10A (B Minor)</option>
+                                        <option value="10B">10B (D Major)</option>
+                                        <option value="11A">11A (F# Minor)</option>
+                                        <option value="11B">11B (A Major)</option>
+                                        <option value="12A">12A (C# Minor)</option>
+                                        <option value="12B">12B (E Major)</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Genre</label>
+                                    <select id="genreFilter" class="input-sm">
+                                        <option value="">Any Genre</option>
+                                        <!-- Options will be populated dynamically -->
+                                    </select>
+                                </div>
+                                <div class="filter-actions">
+                                    <button onclick="queryLibrary()">Apply Filters</button>
+                                    <button onclick="loadLibrary()" class="secondary-btn">Refresh Library</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Smart Playlist Builder -->
+                        <div>
+                            <h4 style="color: var(--text-primary); font-size: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">🎵 Smart Playlist Builder</h4>
+                            <div class="filter-grid">
+                                <div class="filter-group">
+                                    <label>Duration (minutes)</label>
+                                    <input type="number" id="playlistDuration" value="60" min="30" max="180" class="input-sm">
+                                </div>
+                                <div class="filter-group">
+                                    <label>Energy Curve</label>
+                                    <select id="energyCurve" class="input-sm">
+                                        <option value="gradual_build">Gradual Build</option>
+                                        <option value="peak_sustain">Peak & Sustain</option>
+                                        <option value="rollercoaster">Rollercoaster</option>
+                                        <option value="chill_down">Chill Down</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Start Key (Optional)</label>
+                                    <select id="startKey" class="input-sm">
+                                        <option value="">Any Key</option>
+                                        <option value="1A">1A (G# Minor)</option>
+                                        <option value="1B">1B (B Major)</option>
+                                        <option value="2A">2A (D# Minor)</option>
+                                        <option value="2B">2B (F# Major)</option>
+                                        <option value="3A">3A (Bb Minor)</option>
+                                        <option value="3B">3B (Db Major)</option>
+                                        <option value="4A">4A (F Minor)</option>
+                                        <option value="4B">4B (Ab Major)</option>
+                                        <option value="5A">5A (C Minor)</option>
+                                        <option value="5B">5B (Eb Major)</option>
+                                        <option value="6A">6A (G Minor)</option>
+                                        <option value="6B">6B (Bb Major)</option>
+                                        <option value="7A">7A (D Minor)</option>
+                                        <option value="7B">7B (F Major)</option>
+                                        <option value="8A">8A (A Minor)</option>
+                                        <option value="8B">8B (C Major)</option>
+                                        <option value="9A">9A (E Minor)</option>
+                                        <option value="9B">9B (G Major)</option>
+                                        <option value="10A">10A (B Minor)</option>
+                                        <option value="10B">10B (D Major)</option>
+                                        <option value="11A">11A (F# Minor)</option>
+                                        <option value="11B">11B (A Major)</option>
+                                        <option value="12A">12A (C# Minor)</option>
+                                        <option value="12B">12B (E Major)</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Mood (Optional)</label>
+                                    <select id="playlistMood" class="input-sm">
+                                        <option value="">Any Mood</option>
+                                        <option value="Happy">😊 Happy</option>
+                                        <option value="Sad">😢 Sad</option>
+                                        <option value="Energetic">⚡ Energetic</option>
+                                        <option value="Chill">😌 Chill</option>
+                                        <option value="Uplifting">🌅 Uplifting</option>
+                                        <option value="Melancholic">🌧️ Melancholic</option>
+                                        <option value="Party">🎉 Party</option>
+                                    </select>
+                                </div>
+                                <div class="filter-actions">
+                                    <button onclick="generateSmartPlaylistFromLibrary()">🎵 Generate Smart Playlist</button>
+                                </div>
+                            </div>
+                            <div id="playlistStatus" style="margin-top: 1rem; color: var(--accent-color); font-size: 0.875rem; display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="library-playlist-grid">
+                    <!-- Library Tracks Table -->
+                    <section class="card">
+                        <div class="table-header">
+                            <h3>Library Tracks (<span id="libraryCount">0</span>)</h3>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <button id="reanalyzeLibrarySelectedBtn" onclick="reanalyzeLibrarySelected()" class="secondary-btn" style="display: none; background: #3b82f6; color: white; border-color: #3b82f6; font-weight: 600;">🔄 Reanalyze Selected</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table id="libraryTable" class="rekordbox-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-checkbox"><input type="checkbox" id="selectAllLibraryCheckbox" onclick="toggleSelectAllLibrary()"></th>
+                                        <th class="col-status">Status</th>
+                                        <th class="col-title sortable" onclick="sortLibraryTable('title')">Title <span class="sort-indicator">↕</span></th>
+                                        <th class="col-artist sortable" onclick="sortLibraryTable('artist')">Artist <span class="sort-indicator">↕</span></th>
+                                        <th class="col-bpm sortable" onclick="sortLibraryTable('bpm')">BPM <span class="sort-indicator">↕</span></th>
+                                        <th class="col-key sortable" onclick="sortLibraryTable('key')">Key <span class="sort-indicator">↕</span></th>
+                                        <th class="col-energy sortable" onclick="sortLibraryTable('energy')">Energy <span class="sort-indicator">↕</span></th>
+                                        <th class="col-mood">Mood</th>
+                                        <th class="col-genre">Genre</th>
+                                        <th class="col-popularity sortable" onclick="sortLibraryTable('popularity')">Popularity <span class="sort-indicator">↕</span></th>
+                                        <th class="col-location">Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="libraryTableBody">
+                                    <tr>
+                                        <td colspan="11" class="empty-state">Loading library...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Generated Playlist -->
+                    <section class="card">
+                        <div class="table-header">
+                            <h3>Generated Playlist (<span id="playlistCount">0</span>)</h3>
+                            <div class="export-actions">
+                                <button class="secondary-btn" onclick="savePlaylist()">💾 Save</button>
+                                <button class="secondary-btn" onclick="exportM3U()">.m3u</button>
+                                <button class="secondary-btn" onclick="exportRekordbox()">XML</button>
+                            </div>
+                        </div>
+                        <div class="playlist-list-container" id="playlistListContainer">
+                            <div id="playlistList" class="playlist-list">
+                                <div class="playlist-empty-state">Generate a playlist to see tracks</div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-                <div class="console-output" id="consoleOutput">
-                    <div class="log-entry">Waiting to start...</div>
-                </div>
-            </section>
+            </div>
+
+            <!-- PLAYLISTS TAB -->
+            <div id="playlists-tab" class="tab-content">
+                <section class="card">
+                    <div class="table-header">
+                        <h3>💾 Saved Playlists</h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button class="secondary-btn" onclick="loadSavedPlaylists()">🔄 Refresh</button>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem; padding: 0 1.5rem;">
+                        View and manage your saved playlists. Click "Load" to view tracks or "Delete" to remove a playlist.
+                    </p>
+                    <div class="table-container">
+                        <table id="savedPlaylistsTable" class="rekordbox-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-title sortable" onclick="sortSavedPlaylists('name')">Playlist Name <span class="sort-indicator">↕</span></th>
+                                    <th class="col-bpm sortable" onclick="sortSavedPlaylists('tracks')">Tracks <span class="sort-indicator">↕</span></th>
+                                    <th class="col-key sortable" onclick="sortSavedPlaylists('created')">Created <span class="sort-indicator">↕</span></th>
+                                    <th class="col-energy">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="savedPlaylistsTableBody">
+                                <tr>
+                                    <td colspan="4" class="empty-state">Loading playlists...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Loaded Playlist Details -->
+                <section class="card" id="loadedPlaylistSection" style="display: none; margin-top: 1.5rem;">
+                    <div class="table-header">
+                        <h3>📋 Playlist: <span id="loadedPlaylistName">-</span> (<span id="loadedPlaylistCount">0</span> tracks)</h3>
+                        <div class="export-actions">
+                            <button class="secondary-btn" onclick="exportM3U()">Export .m3u</button>
+                            <button class="secondary-btn" onclick="exportRekordbox()">Export XML</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table id="loadedPlaylistTable" class="rekordbox-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-status">#</th>
+                                    <th class="col-title sortable" onclick="sortPlaylistTable('title')">Title <span class="sort-indicator">↕</span></th>
+                                    <th class="col-artist sortable" onclick="sortPlaylistTable('artist')">Artist <span class="sort-indicator">↕</span></th>
+                                    <th class="col-bpm sortable" onclick="sortPlaylistTable('bpm')">BPM <span class="sort-indicator">↕</span></th>
+                                    <th class="col-key sortable" onclick="sortPlaylistTable('key')">Key <span class="sort-indicator">↕</span></th>
+                                    <th class="col-energy sortable" onclick="sortPlaylistTable('energy')">Energy <span class="sort-indicator">↕</span></th>
+                                    <th class="col-mood">Mood</th>
+                                </tr>
+                            </thead>
+                            <tbody id="loadedPlaylistTableBody">
+                                <tr>
+                                    <td colspan="7" class="empty-state">Load a playlist to see tracks</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
         </main>
 
         <footer>

@@ -54,6 +54,10 @@ def tag_file(path, metadata):
                 # Clean up genre list string if it looks like "['a', 'b']"
                 g_str = str(metadata['genres']).replace("['", "").replace("']", "").replace("', '", ", ")
                 comment_parts.append(f"Genres: {g_str}")
+            if 'mood' in metadata:
+                # Store mood in TXXX frame
+                audio.tags.add(mutagen.id3.TXXX(encoding=3, desc='Mood', text=metadata['mood']))
+                comment_parts.append(f"Mood: {metadata['mood']}")
             
             if comment_parts:
                 comment_text = " | ".join(comment_parts)
@@ -75,7 +79,7 @@ def tag_file(path, metadata):
             for k, v in metadata.items():
                 if k not in ['bpm']: # BPM already handled or standard
                     audio[k] = [str(v)]
-                    if k in ['energy', 'popularity', 'genres']:
+                    if k in ['energy', 'popularity', 'genres', 'mood']:
                          comment_parts.append(f"{k.capitalize()}: {v}")
             
             if comment_parts:
@@ -86,3 +90,29 @@ def tag_file(path, metadata):
 
     except Exception as e:
         print(f"Error tagging {path}: {e}")
+
+def has_analysis_tags(path):
+    """
+    Checks if the file already has analysis tags (BPM, Key).
+    Returns True if analyzed, False otherwise.
+    """
+    try:
+        audio = mutagen.File(path)
+        if audio is None:
+            return False
+
+        if isinstance(audio, MP3) or isinstance(audio, WAVE):
+            if audio.tags:
+                # Check for TBPM (BPM) and TKEY (Key)
+                has_bpm = 'TBPM' in audio.tags
+                has_key = 'TKEY' in audio.tags
+                return has_bpm and has_key
+        else:
+            # FLAC, OGG, etc.
+            has_bpm = 'bpm' in audio
+            has_key = 'key' in audio
+            return has_bpm and has_key
+            
+    except Exception:
+        return False
+    return False

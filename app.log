@@ -1,0 +1,218 @@
+INFO:     Will watch for changes in these directories: ['/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [81067] using StatReload
+INFO:     Started server process [81071]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:58719 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58721 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58722 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:58721 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:58723 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58721 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58725 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58725 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58725 - "GET /library/statistics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58725 - "POST /library/cleanup HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58726 - "GET /library/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58726 - "GET /library/statistics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58726 - "GET /library/statistics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58726 - "GET /library/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58726 - "GET /library/statistics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58726 - "GET /library/statistics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58726 - "POST /library/remove_duplicates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58728 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58728 - "POST /scan HTTP/1.1" 200 OK
+DEBUG: Starting scan for directory: '/Users/tharunk/Music/Downloaded by MediaHuman'
+DEBUG: Total supported files found: 16
+INFO:     127.0.0.1:58731 - "POST /open_folder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58731 - "POST /open_folder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "GET /library/statistics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "POST /library/cleanup HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "POST /library/remove_duplicates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "GET /library/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "GET /library/statistics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "GET /library/statistics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58830 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:58830 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:58831 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58832 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58831 - "POST /scan HTTP/1.1" 200 OK
+DEBUG: Starting scan for directory: '/Users/tharunk/Music/Downloaded by MediaHuman'
+DEBUG: Total supported files found: 16
+INFO:     127.0.0.1:58841 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58842 - "POST /open_folder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58843 - "POST /open_folder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58844 - "POST /open_folder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58844 - "POST /open_folder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58962 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:58962 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:58963 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58964 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58963 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58963 - "POST /library/query HTTP/1.1" 200 OK
+HTTP Error for GET to https://api.spotify.com/v1/audio-features/?ids=0NbULP2j3V2MgaoXLJPhdZ with Params: {} returned 403 due to None
+Tagged /Users/tharunk/Music/Downloaded by MediaHuman/Jan Blomqvist - Something Says.mp3
+Tagged /Users/tharunk/Music/Downloaded by MediaHuman/Bebbo - Amor (Original Mix) Redolent Music.mp3
+INFO:     127.0.0.1:58965 - "POST /analyze_files_batch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58965 - "POST /library/query HTTP/1.1" 200 OK
+Tagged /Users/tharunk/Music/Downloaded by MediaHuman/Bebbo - Amor (Original Mix) Redolent Music.mp3
+Tagged /Users/tharunk/Music/Downloaded by MediaHuman/Bebbo - Reflections (Original Mix) [Stereo Productions].mp3
+Tagged /Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+INFO:     127.0.0.1:59000 - "POST /analyze_files_batch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59000 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59000 - "POST /open_folder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59013 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59014 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59015 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59026 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59026 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59138 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:59138 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59139 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59140 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59139 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59208 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59208 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59263 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:59263 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59264 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:59265 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59263 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59276 - "GET /library/playlists HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81071]
+INFO:     Started server process [81510]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'library_manager.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81510]
+INFO:     Started server process [81515]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'library_manager.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81515]
+INFO:     Started server process [81541]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'library_manager.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81541]
+INFO:     Started server process [81559]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81559]
+INFO:     Started server process [81568]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:59526 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59526 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59527 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59526 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:59528 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59527 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59533 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59536 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59536 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59646 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:59647 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59646 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:59648 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59647 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59656 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59657 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59667 - "POST /library/save_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59667 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59667 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59667 - "GET /library/playlists/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59668 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59812 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:59812 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59813 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:59814 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59812 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59816 - "POST /open_folder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59816 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59923 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:59923 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59924 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59925 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59924 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59924 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59934 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59934 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59934 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:59934 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:59946 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:59947 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59946 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59946 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59946 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60076 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:60076 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:60077 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60078 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60077 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60077 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60173 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:60173 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:60174 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60175 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60174 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60176 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60257 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:60257 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:60257 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60259 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60257 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60273 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60273 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60273 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60273 - "GET /library/playlists/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60277 - "POST /library/query HTTP/1.1" 200 OK

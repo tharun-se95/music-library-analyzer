@@ -17,9 +17,9 @@ def analyze_track(path):
         energy = estimate_energy(y)
         
         return {
-            "bpm": round(bpm),
+            "bpm": int(round(bpm)),
             "key": key,
-            "energy": round(energy, 2)
+            "energy": float(round(energy, 2))
         }
     except Exception as e:
         print(f"Error analyzing {path}: {e}")
