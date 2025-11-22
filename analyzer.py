@@ -8,6 +8,9 @@ def analyze_track(path):
     Returns a dictionary with the analysis results.
     """
     try:
+        # Get full duration first
+        duration = librosa.get_duration(path=path)
+        
         # Load audio (only first 2 minutes to save time, or full if needed)
         # Using a duration limit helps with performance on large libraries
         y, sr = librosa.load(path, duration=120)
@@ -19,7 +22,8 @@ def analyze_track(path):
         return {
             "bpm": int(round(bpm)),
             "key": key,
-            "energy": float(round(energy, 2))
+            "energy": float(round(energy, 2)),
+            "duration": float(round(duration, 2))  # Duration in seconds
         }
     except Exception as e:
         print(f"Error analyzing {path}: {e}")

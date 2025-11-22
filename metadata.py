@@ -55,9 +55,19 @@ class MetadataFetcher:
             artist_info = self.sp.artist(artist_id)
             genres = artist_info['genres']
             
+            # Get album art URL (use largest available image)
+            album_art_url = None
+            if track.get('album') and track['album'].get('images'):
+                images = track['album']['images']
+                if images:
+                    # Get the largest image (first one is usually the largest)
+                    album_art_url = images[0].get('url')
+            
             result = {
                 "popularity": track['popularity'],
                 "genres": genres,
+                "album_art": album_art_url,
+                "album_art_url": album_art_url,  # Alias for compatibility
             }
 
             # Get audio features (danceability, valence, etc.)

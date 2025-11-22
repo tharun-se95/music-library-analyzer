@@ -786,8 +786,10 @@ async function savePlaylist() {
 }
 
 async function loadSavedPlaylists() {
-    const tbody = document.getElementById('savedPlaylistsTableBody');
-    tbody.innerHTML = '<tr><td colspan="4" class="empty-state">Loading playlists...</td></tr>';
+    const grid = document.getElementById('playlistsGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = '<div class="playlist-empty-state">Loading playlists...</div>';
     
     try {
         const response = await fetch('/library/playlists', {
@@ -800,32 +802,140 @@ async function loadSavedPlaylists() {
         }
         
         const data = await response.json();
-        const playlists = data.playlists || [];
+        savedPlaylistsData = data.playlists || [];
         
-        if (playlists.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No saved playlists yet</td></tr>';
+        if (savedPlaylistsData.length === 0) {
+            grid.innerHTML = '<div class="playlist-empty-state">No saved playlists yet. Generate and save playlists from the Libraries tab.</div>';
             return;
         }
         
-        tbody.innerHTML = playlists.map(playlist => {
-            const date = new Date(playlist.created || Date.now());
-            return `
-                <tr class="table-row">
-                    <td class="col-title">${playlist.name}</td>
-                    <td class="col-bpm">${playlist.track_count || 0}</td>
-                    <td class="col-key">${date.toLocaleDateString()}</td>
-                    <td class="col-energy">
-                        <button class="secondary-btn" onclick="loadPlaylist('${playlist.id}')" style="margin-right: 0.5rem;">Load</button>
-                        <button class="secondary-btn" onclick="deletePlaylist('${playlist.id}')">Delete</button>
-                    </td>
-                </tr>
-            `;
-        }).join('');
+        renderPlaylistCards(savedPlaylistsData);
         
     } catch (error) {
         console.error('Error loading playlists:', error);
-        tbody.innerHTML = '<tr><td colspan="4" class="empty-state" style="color: #f87171;">Error loading playlists: ' + error.message + '</td></tr>';
+        grid.innerHTML = '<div class="playlist-empty-state" style="color: #f87171;">Error loading playlists: ' + error.message + '</div>';
     }
+}
+
+function renderPlaylistCards(playlists) {
+    const grid = document.getElementById('playlistsGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = playlists.map(playlist => {
+        const date = new Date(playlist.created || Date.now());
+        const formattedDate = date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric'
+        });
+        
+        // Use album art if available, otherwise use default playlist image
+        const albumArtUrl = playlist.album_art || getDefaultPlaylistImage(playlist.name);
+        
+        // Format duration
+        const durationHours = Math.floor((playlist.duration_minutes || 0) / 60);
+        const durationMins = Math.round((playlist.duration_minutes || 0) % 60);
+        let durationText = '';
+        if (durationHours > 0) {
+            durationText = `${durationHours}h ${durationMins}m`;
+        } else {
+            durationText = `${durationMins}m`;
+        }
+        
+        // Prepare overlay content (artists, styles, genres)
+        const allArtists = playlist.artists || [];
+        const artistList = allArtists.map(artist => escapeHtml(artist)).join(', ');
+        const genres = playlist.genres || [];
+        const genreChips = genres.map(genre => 
+            `<span class="overlay-genre-chip">${escapeHtml(genre)}</span>`
+        ).join('');
+        
+        return `
+            <div class="playlist-card" onclick="loadPlaylist('${escapeHtml(playlist.id)}')">
+                <div class="playlist-card-image">
+                    <img src="${albumArtUrl}" alt="${escapeHtml(playlist.name)}" onerror="this.src='${getDefaultPlaylistImage(playlist.name)}'">
+                    <div class="playlist-card-overlay">
+                        <button class="playlist-card-action playlist-card-action-play" onclick="event.stopPropagation(); loadPlaylist('${escapeHtml(playlist.id)}')" title="Load Playlist">
+                            ▶
+                        </button>
+                        <button class="playlist-card-action playlist-card-action-delete" onclick="event.stopPropagation(); deletePlaylist('${escapeHtml(playlist.id)}')" title="Delete Playlist">
+                            ✕
+                        </button>
+                        <div class="playlist-overlay-details">
+                            ${allArtists.length > 0 ? `
+                                <div class="overlay-section">
+                                    <div class="overlay-section-title">Artists</div>
+                                    <div class="overlay-artists">${artistList}</div>
+                                </div>
+                            ` : ''}
+                            ${playlist.style ? `
+                                <div class="overlay-section">
+                                    <div class="overlay-section-title">Style</div>
+                                    <div class="overlay-style">${escapeHtml(playlist.style)}</div>
+                                </div>
+                            ` : ''}
+                            ${genres.length > 0 ? `
+                                <div class="overlay-section">
+                                    <div class="overlay-section-title">Genres</div>
+                                    <div class="overlay-genres">${genreChips}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+                <div class="playlist-card-content">
+                    <h4 class="playlist-card-title">${escapeHtml(playlist.name)}</h4>
+                    <div class="playlist-card-stats">
+                        <span class="playlist-stat-item">
+                            <span class="playlist-stat-icon">🎵</span>
+                            <span class="playlist-stat-value">${playlist.track_count || 0}</span>
+                        </span>
+                        <span class="playlist-stat-item">
+                            <span class="playlist-stat-icon">⏱️</span>
+                            <span class="playlist-stat-value">${durationText}</span>
+                        </span>
+                    </div>
+                    <div class="playlist-card-date">${formattedDate}</div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function getDefaultPlaylistImage(playlistName) {
+    // Generate a colorful gradient based on playlist name hash
+    const colors = [
+        ['#667eea', '#764ba2'], // Purple
+        ['#f093fb', '#f5576c'], // Pink
+        ['#4facfe', '#00f2fe'], // Blue
+        ['#43e97b', '#38f9d7'], // Green
+        ['#fa709a', '#fee140'], // Orange
+        ['#30cfd0', '#330867'], // Teal
+        ['#a8edea', '#fed6e3'], // Mint
+        ['#ff9a9e', '#fecfef'], // Rose
+    ];
+    
+    // Simple hash function
+    let hash = 0;
+    for (let i = 0; i < playlistName.length; i++) {
+        hash = playlistName.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const colorIndex = Math.abs(hash) % colors.length;
+    const [color1, color2] = colors[colorIndex];
+    
+    // Create SVG gradient
+    return `data:image/svg+xml,${encodeURIComponent(`
+        <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:${color1};stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:${color2};stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="url(#grad)"/>
+            <text x="150" y="140" font-family="Arial, sans-serif" font-size="60" fill="white" text-anchor="middle" opacity="0.3">🎵</text>
+        </svg>
+    `)}`;
 }
 
 async function loadPlaylist(playlistId) {

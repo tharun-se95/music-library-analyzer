@@ -417,13 +417,77 @@ async def list_playlists():
                 try:
                     with open(playlist_path, 'r') as f:
                         data = json.load(f)
+                        tracks = data.get("tracks", [])
+                        
+                        # Get album art from first track if available
+                        album_art = None
+                        if tracks:
+                            first_track = tracks[0]
+                            # Check if track has album art URL (from Spotify metadata)
+                            album_art = first_track.get("album_art") or first_track.get("album_art_url") or first_track.get("image_url")
+                        
+                        # Calculate total duration (estimate ~4 minutes per track if not available)
+                        total_duration_minutes = 0
+                        for track in tracks:
+                            # Try to get duration from track metadata
+                            duration_sec = track.get("duration") or track.get("length") or track.get("time")
+                            if duration_sec:
+                                total_duration_minutes += duration_sec / 60
+                            else:
+                                # Estimate ~4 minutes per track
+                                total_duration_minutes += 4
+                        
+                        # Get unique artists
+                        artists = []
+                        artist_set = set()
+                        for track in tracks:
+                            artist = track.get("artist", "").strip()
+                            if artist and artist not in artist_set:
+                                artists.append(artist)
+                                artist_set.add(artist)
+                                if len(artists) >= 5:  # Limit to 5 artists for display
+                                    break
+                        
+                        # Determine style/genre from tracks
+                        genres = []
+                        genre_set = set()
+                        for track in tracks:
+                            # Check for genre field
+                            genre = track.get("genre", "").strip()
+                            if genre and genre not in genre_set:
+                                genres.append(genre)
+                                genre_set.add(genre)
+                            
+                            # Check for genres array (from Spotify)
+                            track_genres = track.get("genres", [])
+                            if isinstance(track_genres, list):
+                                for g in track_genres[:2]:  # Limit per track
+                                    if g and g not in genre_set:
+                                        genres.append(g)
+                                        genre_set.add(g)
+                                        if len(genres) >= 3:  # Limit total genres
+                                            break
+                            if len(genres) >= 3:
+                                break
+                        
+                        # Get primary style/genre
+                        primary_style = genres[0] if genres else "Mixed"
+                        
                         playlists.append({
                             "id": filename.replace('.json', ''),
                             "name": data.get("name", filename.replace('.json', '')),
-                            "track_count": data.get("track_count", len(data.get("tracks", []))),
-                            "created": data.get("created", "")
+                            "track_count": data.get("track_count", len(tracks)),
+                            "created": data.get("created", ""),
+                            "album_art": album_art,
+                            "first_artist": tracks[0].get("artist", "") if tracks else "",
+                            "first_title": tracks[0].get("title", "") if tracks else "",
+                            "duration_minutes": round(total_duration_minutes, 1),
+                            "artists": artists,
+                            "style": primary_style,
+                            "genres": genres[:3]  # Top 3 genres
                         })
-                except:
+                except Exception as e:
+                    print(f"Error loading playlist {filename}: {e}")
                     continue
         
         # Sort by created date (newest first)

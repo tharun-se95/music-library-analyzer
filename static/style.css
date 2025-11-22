@@ -1087,6 +1087,225 @@ tr:hover {
     color: #a78bfa;
 }
 
+/* Playlist Cards Grid */
+.playlists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.playlist-empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.playlist-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-color);
+}
+
+.playlist-card-image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Square aspect ratio */
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.playlist-card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.playlist-card:hover .playlist-card-image img {
+    transform: scale(1.05);
+}
+
+.playlist-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    overflow-y: auto;
+}
+
+.playlist-card:hover .playlist-card-overlay {
+    opacity: 1;
+}
+
+.playlist-card-action {
+    position: absolute;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0.5rem;
+    line-height: 1;
+    opacity: 0.8;
+    z-index: 10;
+}
+
+.playlist-card-action:hover {
+    opacity: 1;
+    transform: scale(1.15);
+    color: var(--accent-color);
+}
+
+.playlist-card-action-play {
+    top: 0.75rem;
+    left: 0.75rem;
+}
+
+.playlist-card-action-delete {
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.playlist-overlay-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+    margin-top: 2rem;
+}
+
+.overlay-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.overlay-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.overlay-artists {
+    font-size: 0.85rem;
+    color: white;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.overlay-style {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.overlay-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+}
+
+.overlay-genre-chip {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    border-radius: 8px;
+    font-size: 0.7rem;
+    color: white;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.playlist-card-content {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    min-height: 90px;
+}
+
+.playlist-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+.playlist-card-stats {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.playlist-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.playlist-stat-icon {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.playlist-stat-value {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.playlist-card-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .playlists-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+}
+
 /* Compact column widths for generated playlist table */
 .library-playlist-grid > .card:last-child .col-status {
     width: 40px;

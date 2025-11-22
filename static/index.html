@@ -360,24 +360,10 @@
                         </div>
                     </div>
                     <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem; padding: 0 1.5rem;">
-                        View and manage your saved playlists. Click "Load" to view tracks or "Delete" to remove a playlist.
+                        View and manage your saved playlists. Click a card to load tracks or use the action buttons.
                     </p>
-                    <div class="table-container">
-                        <table id="savedPlaylistsTable" class="rekordbox-table">
-                            <thead>
-                                <tr>
-                                    <th class="col-title sortable" onclick="sortSavedPlaylists('name')">Playlist Name <span class="sort-indicator">↕</span></th>
-                                    <th class="col-bpm sortable" onclick="sortSavedPlaylists('tracks')">Tracks <span class="sort-indicator">↕</span></th>
-                                    <th class="col-key sortable" onclick="sortSavedPlaylists('created')">Created <span class="sort-indicator">↕</span></th>
-                                    <th class="col-energy">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="savedPlaylistsTableBody">
-                                <tr>
-                                    <td colspan="4" class="empty-state">Loading playlists...</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div id="playlistsGrid" class="playlists-grid">
+                        <div class="playlist-empty-state">Loading playlists...</div>
                     </div>
                 </section>
 
