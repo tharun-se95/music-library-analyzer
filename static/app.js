@@ -1231,15 +1231,26 @@ async function reanalyzeLibrarySelected() {
 
 // --- Library & DJ Features ---
 
-function switchTab(tabName) {
+function switchTab(tabName, event) {
+    // Update URL hash for routing (this will trigger handleHashChange)
+    if (window.location.hash.slice(1) !== tabName) {
+        window.location.hash = tabName;
+    } else {
+        // If hash is already correct, just update UI directly
+        updateTabUI(tabName, event);
+    }
+}
+
+function updateTabUI(tabName, event) {
     // Update Buttons
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     if (event && event.target) {
-    event.target.classList.add('active');
+        event.target.classList.add('active');
     } else {
         // Fallback: find button by text content
         document.querySelectorAll('.nav-btn').forEach(btn => {
-            if (btn.textContent.includes('Dashboard') && tabName === 'dashboard') btn.classList.add('active');
+            if (btn.textContent.includes('Home') && tabName === 'home') btn.classList.add('active');
+            if (btn.textContent.includes('Analyzer') && tabName === 'analyzer') btn.classList.add('active');
             if (btn.textContent.includes('Libraries') && tabName === 'library') btn.classList.add('active');
             if (btn.textContent.includes('Playlists') && tabName === 'playlists') btn.classList.add('active');
         });
@@ -1264,6 +1275,43 @@ function switchTab(tabName) {
         loadSavedPlaylists();
     }
 }
+
+// Handle URL hash changes (for browser back/forward and refresh)
+function handleHashChange() {
+    const hash = window.location.hash.slice(1) || 'home'; // Default to 'home' if no hash
+    const validTabs = ['home', 'analyzer', 'library', 'playlists'];
+    
+    if (validTabs.includes(hash)) {
+        // Use updateTabUI to avoid triggering hash change again
+        updateTabUI(hash, null);
+    }
+}
+
+// Initialize routing on page load
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', () => {
+        // Check if there's a hash in the URL
+        if (window.location.hash) {
+            handleHashChange();
+        } else {
+            // Default to home page
+            window.location.hash = 'home';
+            handleHashChange();
+        }
+    });
+} else {
+    // DOM already loaded
+    if (window.location.hash) {
+        handleHashChange();
+    } else {
+        // Default to home page
+        window.location.hash = 'home';
+        handleHashChange();
+    }
+}
+
+// Listen for hash changes (browser back/forward)
+window.addEventListener('hashchange', handleHashChange);
 
 // Library Management
 let currentLibraryTracks = [];
@@ -1529,7 +1577,7 @@ function sortLibraryTable(column) {
 function scanLibrary() {
     const directory = document.getElementById('directoryInput').value;
     if (!directory) {
-        alert("Please select a directory in the Dashboard first.");
+        alert("Please select a directory in the Analyzer first.");
         return;
     }
 

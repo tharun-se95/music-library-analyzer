@@ -937,3 +937,69 @@ Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine 
 Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
 INFO:     127.0.0.1:63552 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
 INFO:     127.0.0.1:63553 - "POST /library/query HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:63622 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     connection closed
+INFO:     127.0.0.1:50874 - "GET /library/playlists HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:50874 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:50879 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:50880 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:50881 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:50882 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:50882 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:50882 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+INFO:     127.0.0.1:50885 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DJ%20Wady%20%26%20Patrick%20M%20-%20No%20Time%20for%20Hulk%20%28Camelphat%20Re-Fix%20-%20%28Erik%20Hagleton%202018%20Vocal%20Edit%29%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50887 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50897 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50897 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51247 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51247 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51248 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51249 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51252 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51252 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51253 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51253 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51421 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:51421 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51422 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51423 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51502 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51502 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51502 - "GET /library/playlists/Progressive HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:51502 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51513 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:51514 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51580 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:51580 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51581 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:51582 - "WebSocket /ws" [accepted]
+INFO:     127.0.0.1:51580 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     connection open
+INFO:     127.0.0.1:51587 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51587 - "POST /library/query HTTP/1.1" 200 OK

@@ -16,19 +16,255 @@
 <body>
     <div class="container">
         <header>
+            <div class="header-top">
+                <div class="header-branding">
             <div class="logo">💀 SkullKrush <span class="highlight">Analyzer</span></div>
-            <div class="subtitle">Professional Music Analysis Tool</div>
-
+                    <div class="product-badge">A Product of SkullKrush Studios</div>
+                </div>
             <nav class="main-nav">
-                <button class="nav-btn active" onclick="switchTab('dashboard')">Dashboard</button>
-                <button class="nav-btn" onclick="switchTab('library')">Libraries</button>
-                <button class="nav-btn" onclick="switchTab('playlists')">Playlists</button>
+                    <button class="nav-btn" onclick="switchTab('home', event)">Home</button>
+                    <button class="nav-btn" onclick="switchTab('analyzer', event)">Analyzer</button>
+                    <button class="nav-btn" onclick="switchTab('library', event)">Libraries</button>
+                    <button class="nav-btn" onclick="switchTab('playlists', event)">Playlists</button>
             </nav>
+            </div>
         </header>
 
         <main>
-            <!-- DASHBOARD TAB -->
-            <div id="dashboard-tab" class="tab-content active">
+            <!-- HOME TAB -->
+            <div id="home-tab" class="tab-content">
+                <!-- Hero Section -->
+                <section class="home-hero-section">
+                    <div class="home-hero-content">
+                        <div class="home-hero-badge">💀 A Product of SkullKrush Studios</div>
+                        <h1 class="home-hero-title">Transform Your Music Library</h1>
+                        <p class="home-hero-subtitle">Professional-grade audio analysis, intelligent playlist generation, and comprehensive library management—all in one powerful tool.</p>
+                        <div class="home-hero-cta">
+                            <button class="hero-btn primary" onclick="switchTab('analyzer', event)">Start Analyzing</button>
+                            <button class="hero-btn secondary" onclick="switchTab('library', event)">View Library</button>
+                        </div>
+                        <div class="home-hero-stats">
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">6+</div>
+                                <div class="hero-stat-label">Audio Formats</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">∞</div>
+                                <div class="hero-stat-label">Tracks Supported</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">100%</div>
+                                <div class="hero-stat-label">Local Processing</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sidekick Section -->
+                <section class="home-sidekick-section">
+                    <div class="sidekick-content">
+                        <div class="sidekick-text">
+                            <h2>Why SkullKrush Analyzer?</h2>
+                            <p>Built for DJs, music producers, and audio enthusiasts who demand precision and control. Our advanced algorithms analyze every aspect of your music—from BPM and key detection to mood classification—giving you the insights you need to create perfect sets.</p>
+                            <ul class="sidekick-features">
+                                <li>✓ Real-time analysis with WebSocket updates</li>
+                                <li>✓ Harmonic mixing using Camelot Wheel system</li>
+                                <li>✓ Spotify metadata integration</li>
+                                <li>✓ Built-in audio player with playlist management</li>
+                            </ul>
+                        </div>
+                        <div class="sidekick-visual">
+                            <div class="sidekick-card">
+                                <div class="sidekick-icon">🎵</div>
+                                <div class="sidekick-title">Smart Analysis</div>
+                                <div class="sidekick-desc">AI-powered detection of BPM, Key, Energy, and Mood</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="home-features-section">
+                    <div class="section-header">
+                        <h2>Powerful Features</h2>
+                        <p class="section-subtitle">Everything you need to master your music library</p>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Advanced Audio Analysis</h3>
+                            <p>Automatically analyze your music files to extract BPM, Key, Energy, Mood, Genre, and more using state-of-the-art audio processing powered by Librosa.</p>
+                            <div class="feature-tags">
+                                <span class="feature-tag">BPM Detection</span>
+                                <span class="feature-tag">Key Estimation</span>
+                                <span class="feature-tag">Energy Analysis</span>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📚</div>
+                            <h3>Intelligent Library Management</h3>
+                            <p>Maintain a centralized library of all analyzed tracks with powerful filtering, search, health monitoring, and duplicate detection capabilities.</p>
+                            <div class="feature-tags">
+                                <span class="feature-tag">Smart Filtering</span>
+                                <span class="feature-tag">Health Checks</span>
+                                <span class="feature-tag">Batch Updates</span>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎧</div>
+                            <h3>Smart Playlist Generation</h3>
+                            <p>Generate intelligent playlists using harmonic mixing, energy curves, and mood-based selection for seamless DJ sets and perfect transitions.</p>
+                            <div class="feature-tags">
+                                <span class="feature-tag">Harmonic Mixing</span>
+                                <span class="feature-tag">Energy Curves</span>
+                                <span class="feature-tag">Mood Selection</span>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h3>Metadata Enrichment</h3>
+                            <p>Enhance your tracks with album art, artist information, popularity scores, and mood classification powered by Spotify API integration.</p>
+                            <div class="feature-tags">
+                                <span class="feature-tag">Album Art</span>
+                                <span class="feature-tag">Spotify API</span>
+                                <span class="feature-tag">Mood Classification</span>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <h3>Efficient Batch Processing</h3>
+                            <p>Process entire folders efficiently with incremental analysis, duplicate detection, orphan cleanup tools, and real-time progress tracking.</p>
+                            <div class="feature-tags">
+                                <span class="feature-tag">Incremental Analysis</span>
+                                <span class="feature-tag">Duplicate Detection</span>
+                                <span class="feature-tag">Real-time Updates</span>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💾</div>
+                            <h3>Multi-Format Export</h3>
+                            <p>Export playlists in multiple formats including M3U and Rekordbox XML for seamless integration with professional DJ software.</p>
+                            <div class="feature-tags">
+                                <span class="feature-tag">M3U Format</span>
+                                <span class="feature-tag">Rekordbox XML</span>
+                                <span class="feature-tag">DJ Software Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SkullKrush Studios Section -->
+                <section class="home-studios-section">
+                    <div class="studios-content">
+                        <div class="studios-header">
+                            <div class="studios-logo">💀</div>
+                            <h2>About SkullKrush Studios</h2>
+                        </div>
+                        <div class="studios-grid">
+                            <div class="studios-card">
+                                <div class="studios-icon">🎯</div>
+                                <h3>Our Mission</h3>
+                                <p>To empower music creators and enthusiasts with professional-grade tools that bridge the gap between technical analysis and creative expression. We believe every track deserves to be understood, organized, and showcased at its full potential.</p>
+                            </div>
+                            <div class="studios-card">
+                                <div class="studios-icon">⚡</div>
+                                <h3>What We Do</h3>
+                                <p>SkullKrush Studios specializes in developing cutting-edge music technology solutions. From audio analysis algorithms to intelligent playlist generation, we create tools that enhance your workflow and unlock new creative possibilities.</p>
+                            </div>
+                            <div class="studios-card">
+                                <div class="studios-icon">🔬</div>
+                                <h3>Technology</h3>
+                                <p>Built with Python, FastAPI, and modern web technologies. Our analysis engine leverages Librosa for audio processing, integrates with Spotify's API for metadata enrichment, and uses music theory principles for intelligent classification.</p>
+                            </div>
+                            <div class="studios-card">
+                                <div class="studios-icon">🎨</div>
+                                <h3>Design Philosophy</h3>
+                                <p>We combine powerful functionality with intuitive design. Every feature is crafted to be both powerful for professionals and accessible for enthusiasts. Clean interfaces, real-time feedback, and seamless workflows are at the heart of everything we build.</p>
+                            </div>
+                        </div>
+                        <div class="studios-footer">
+                            <p class="studios-tagline">"Crushing boundaries, one track at a time."</p>
+                            <div class="studios-contact">
+                                <span>© 2025 SkullKrush Studios. All rights reserved.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h2>🚀 Quick Start</h2>
+                    <div class="quick-start-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Navigate to Analyzer</h3>
+                                <p>Click on the "Analyzer" tab to start analyzing your music files.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Select Your Music Folder</h3>
+                                <p>Choose the directory containing your music files using the browse button or enter the path manually.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Start Analysis</h3>
+                                <p>Click "Start Analysis" to begin processing. Tracks will be analyzed and added to your library automatically.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Manage Your Library</h3>
+                                <p>Use the "Libraries" tab to filter tracks, view statistics, and generate smart playlists.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>Create & Play Playlists</h3>
+                                <p>Generate playlists with harmonic mixing, save them, and play directly in the built-in audio player.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h2>📊 Supported Formats</h2>
+                    <div class="formats-list">
+                        <span class="format-badge">MP3</span>
+                        <span class="format-badge">WAV</span>
+                        <span class="format-badge">FLAC</span>
+                        <span class="format-badge">OGG</span>
+                        <span class="format-badge">M4A</span>
+                        <span class="format-badge">AAC</span>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h2>⚙️ Technical Details</h2>
+                    <div class="tech-details">
+                        <div class="tech-item">
+                            <strong>Audio Analysis:</strong> Powered by Librosa for BPM detection, key estimation, and energy analysis
+                        </div>
+                        <div class="tech-item">
+                            <strong>Metadata:</strong> Integrated with Spotify API for track information, album art, and mood classification
+                        </div>
+                        <div class="tech-item">
+                            <strong>Harmonic Mixing:</strong> Uses Camelot Wheel system for compatible key transitions
+                        </div>
+                        <div class="tech-item">
+                            <strong>Storage:</strong> JSON-based library cache for fast queries and updates
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ANALYZER TAB (formerly Dashboard) -->
+            <div id="analyzer-tab" class="tab-content">
                 <section class="control-panel">
                     <div class="input-group">
                         <input type="text" id="directoryInput" placeholder="/path/to/your/music"
@@ -109,7 +345,7 @@
                         </table>
                     </div>
                 </section>
-            </div> <!-- End Dashboard Tab -->
+            </div> <!-- End Analyzer Tab -->
 
             <!-- LIBRARY TAB -->
             <div id="library-tab" class="tab-content">
@@ -118,7 +354,7 @@
                     <div class="table-header">
                         <h3>📊 Library Health & Statistics</h3>
                         <button class="secondary-btn" onclick="toggleLibraryStats()">✕ Hide Stats</button>
-                    </div>
+                            </div>
                     <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-top: 1rem;">
                         <div class="stat-card">
                             <h3>Total Tracks</h3>
@@ -229,64 +465,64 @@
                         <!-- Smart Playlist Builder -->
                         <div>
                             <h4 style="color: var(--text-primary); font-size: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">🎵 Smart Playlist Builder</h4>
-                            <div class="filter-grid">
-                                <div class="filter-group">
-                                    <label>Duration (minutes)</label>
-                                    <input type="number" id="playlistDuration" value="60" min="30" max="180" class="input-sm">
-                                </div>
-                                <div class="filter-group">
-                                    <label>Energy Curve</label>
-                                    <select id="energyCurve" class="input-sm">
-                                        <option value="gradual_build">Gradual Build</option>
-                                        <option value="peak_sustain">Peak & Sustain</option>
-                                        <option value="rollercoaster">Rollercoaster</option>
-                                        <option value="chill_down">Chill Down</option>
-                                    </select>
-                                </div>
-                                <div class="filter-group">
-                                    <label>Start Key (Optional)</label>
-                                    <select id="startKey" class="input-sm">
-                                        <option value="">Any Key</option>
-                                        <option value="1A">1A (G# Minor)</option>
-                                        <option value="1B">1B (B Major)</option>
-                                        <option value="2A">2A (D# Minor)</option>
-                                        <option value="2B">2B (F# Major)</option>
-                                        <option value="3A">3A (Bb Minor)</option>
-                                        <option value="3B">3B (Db Major)</option>
-                                        <option value="4A">4A (F Minor)</option>
-                                        <option value="4B">4B (Ab Major)</option>
-                                        <option value="5A">5A (C Minor)</option>
-                                        <option value="5B">5B (Eb Major)</option>
-                                        <option value="6A">6A (G Minor)</option>
-                                        <option value="6B">6B (Bb Major)</option>
-                                        <option value="7A">7A (D Minor)</option>
-                                        <option value="7B">7B (F Major)</option>
-                                        <option value="8A">8A (A Minor)</option>
-                                        <option value="8B">8B (C Major)</option>
-                                        <option value="9A">9A (E Minor)</option>
-                                        <option value="9B">9B (G Major)</option>
-                                        <option value="10A">10A (B Minor)</option>
-                                        <option value="10B">10B (D Major)</option>
-                                        <option value="11A">11A (F# Minor)</option>
-                                        <option value="11B">11B (A Major)</option>
-                                        <option value="12A">12A (C# Minor)</option>
-                                        <option value="12B">12B (E Major)</option>
-                                    </select>
-                                </div>
-                                <div class="filter-group">
-                                    <label>Mood (Optional)</label>
-                                    <select id="playlistMood" class="input-sm">
-                                        <option value="">Any Mood</option>
-                                        <option value="Happy">😊 Happy</option>
-                                        <option value="Sad">😢 Sad</option>
-                                        <option value="Energetic">⚡ Energetic</option>
-                                        <option value="Chill">😌 Chill</option>
-                                        <option value="Uplifting">🌅 Uplifting</option>
-                                        <option value="Melancholic">🌧️ Melancholic</option>
-                                        <option value="Party">🎉 Party</option>
-                                    </select>
-                                </div>
-                                <div class="filter-actions">
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label>Duration (minutes)</label>
+                            <input type="number" id="playlistDuration" value="60" min="30" max="180" class="input-sm">
+                        </div>
+                        <div class="filter-group">
+                            <label>Energy Curve</label>
+                            <select id="energyCurve" class="input-sm">
+                                <option value="gradual_build">Gradual Build</option>
+                                <option value="peak_sustain">Peak & Sustain</option>
+                                <option value="rollercoaster">Rollercoaster</option>
+                                <option value="chill_down">Chill Down</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Start Key (Optional)</label>
+                            <select id="startKey" class="input-sm">
+                                <option value="">Any Key</option>
+                                <option value="1A">1A (G# Minor)</option>
+                                <option value="1B">1B (B Major)</option>
+                                <option value="2A">2A (D# Minor)</option>
+                                <option value="2B">2B (F# Major)</option>
+                                <option value="3A">3A (Bb Minor)</option>
+                                <option value="3B">3B (Db Major)</option>
+                                <option value="4A">4A (F Minor)</option>
+                                <option value="4B">4B (Ab Major)</option>
+                                <option value="5A">5A (C Minor)</option>
+                                <option value="5B">5B (Eb Major)</option>
+                                <option value="6A">6A (G Minor)</option>
+                                <option value="6B">6B (Bb Major)</option>
+                                <option value="7A">7A (D Minor)</option>
+                                <option value="7B">7B (F Major)</option>
+                                <option value="8A">8A (A Minor)</option>
+                                <option value="8B">8B (C Major)</option>
+                                <option value="9A">9A (E Minor)</option>
+                                <option value="9B">9B (G Major)</option>
+                                <option value="10A">10A (B Minor)</option>
+                                <option value="10B">10B (D Major)</option>
+                                <option value="11A">11A (F# Minor)</option>
+                                <option value="11B">11B (A Major)</option>
+                                <option value="12A">12A (C# Minor)</option>
+                                <option value="12B">12B (E Major)</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Mood (Optional)</label>
+                            <select id="playlistMood" class="input-sm">
+                                <option value="">Any Mood</option>
+                                <option value="Happy">😊 Happy</option>
+                                <option value="Sad">😢 Sad</option>
+                                <option value="Energetic">⚡ Energetic</option>
+                                <option value="Chill">😌 Chill</option>
+                                <option value="Uplifting">🌅 Uplifting</option>
+                                <option value="Melancholic">🌧️ Melancholic</option>
+                                <option value="Party">🎉 Party</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions">
                                     <button onclick="generateSmartPlaylistFromLibrary()">🎵 Generate Smart Playlist</button>
                                 </div>
                             </div>
@@ -372,7 +608,7 @@
 
         <footer>
             <div class="footer-content">
-                <p>&copy; 2025 <span class="studio-name">SkullKrush Studios</span>. All rights reserved.</p>
+            <p>&copy; 2025 <span class="studio-name">SkullKrush Studios</span>. All rights reserved.</p>
             </div>
         </footer>
         
