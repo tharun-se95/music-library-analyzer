@@ -1,8 +1,9 @@
 import os
 import asyncio
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse, StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import mutagen
@@ -19,6 +20,15 @@ load_dotenv()
 
 app = FastAPI()
 library_manager = LibraryManager()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, specify your frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -531,6 +541,136 @@ async def delete_playlist(playlist_id: str):
         return {"success": True, "message": "Playlist deleted"}
     except Exception as e:
         return {"success": False, "error": str(e)}
+
+@app.get("/audio/{file_path:path}")
+@app.head("/audio/{file_path:path}")
+async def serve_audio(file_path: str, request: Request):
+    """Serve audio files for the player."""
+    try:
+        # Decode the file path (it will be URL encoded)
+        import urllib.parse
+        
+        # Decode each path segment separately
+        path_segments = file_path.split('/')
+        decoded_segments = [urllib.parse.unquote(segment) for segment in path_segments if segment]  # Filter empty segments
+        decoded_path = '/' + '/'.join(decoded_segments)  # Always start with /
+        
+        print(f"Serving audio file: {decoded_path}")
+        print(f"Original file_path parameter: {file_path}")
+        
+        # Security check: ensure the path exists and is a valid audio file
+        if not os.path.exists(decoded_path):
+            print(f"File not found: {decoded_path}")
+            print(f"Current working directory: {os.getcwd()}")
+            print(f"Decoded path segments: {decoded_segments}")
+            # Return proper error response
+            from fastapi.responses import JSONResponse
+            return JSONResponse(
+                status_code=404,
+                content={"error": f"File not found: {decoded_path}"}
+            )
+        
+        # Check if it's an audio file
+        supported_exts = ('.mp3', '.wav', '.flac', '.ogg', '.m4a', '.aac')
+        filename_lower = os.path.basename(decoded_path).lower()
+        is_valid_audio = filename_lower.endswith(supported_exts)
+        
+        if not is_valid_audio:
+            print(f"Invalid audio file: {decoded_path}")
+            from fastapi.responses import JSONResponse
+            return JSONResponse(
+                status_code=400,
+                content={"error": f"Invalid audio file: {filename_lower}"}
+            )
+        
+        # Determine media type based on file extension
+        ext = os.path.splitext(decoded_path)[1].lower()
+        media_types = {
+            '.mp3': 'audio/mpeg',
+            '.wav': 'audio/wav',
+            '.flac': 'audio/flac',
+            '.ogg': 'audio/ogg',
+            '.m4a': 'audio/mp4',
+            '.aac': 'audio/aac'
+        }
+        media_type = media_types.get(ext, 'audio/mpeg')
+        
+        file_size = os.path.getsize(decoded_path)
+        
+        # Handle HEAD requests (for pre-flight checks)
+        if hasattr(request, 'method') and request.method == "HEAD":
+            from fastapi.responses import Response
+            return Response(
+                status_code=200,
+                headers={
+                    "Accept-Ranges": "bytes",
+                    "Content-Type": media_type,
+                    "Content-Length": str(file_size),
+                    "Cache-Control": "public, max-age=3600"
+                }
+            )
+        
+        # Handle range requests for seeking
+        range_header = None
+        if request:
+            range_header = request.headers.get('range')
+        
+        if range_header:
+            # Parse range header
+            byte_start = 0
+            byte_end = file_size - 1
+            
+            range_match = range_header.replace('bytes=', '').split('-')
+            if range_match[0]:
+                byte_start = int(range_match[0])
+            if len(range_match) > 1 and range_match[1]:
+                byte_end = int(range_match[1])
+            
+            content_length = byte_end - byte_start + 1
+            
+            # Read file chunk
+            with open(decoded_path, 'rb') as f:
+                f.seek(byte_start)
+                chunk = f.read(content_length)
+            
+            return StreamingResponse(
+                iter([chunk]),
+                status_code=206,  # Partial Content
+                media_type=media_type,
+                headers={
+                    "Content-Range": f"bytes {byte_start}-{byte_end}/{file_size}",
+                    "Accept-Ranges": "bytes",
+                    "Content-Length": str(content_length),
+                    "Content-Type": media_type,
+                }
+            )
+        
+        # Return the full file with appropriate headers
+        # Use StreamingResponse for better compatibility
+        def iterfile():
+            with open(decoded_path, mode="rb") as file_like:
+                yield from file_like
+        
+        return StreamingResponse(
+            iterfile(),
+            media_type=media_type,
+            headers={
+                "Accept-Ranges": "bytes",
+                "Content-Length": str(file_size),
+                "Content-Disposition": f'inline; filename="{os.path.basename(decoded_path)}"',
+                "Cache-Control": "public, max-age=3600",
+                "Content-Type": media_type
+            }
+        )
+    except Exception as e:
+        print(f"Error serving audio: {e}")
+        import traceback
+        traceback.print_exc()
+        from fastapi.responses import JSONResponse
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)}
+        )
 
 @app.get("/library/statistics")
 async def get_library_statistics():

@@ -633,8 +633,8 @@ function renderPlaylistList(tracks) {
                     <span class="playlist-meta-item"><strong>Energy:</strong> ${energy}</span>
                     ${mood !== '-' ? `<span class="playlist-meta-item"><strong>Mood:</strong> ${mood}</span>` : ''}
                 </div>
-            </div>
-        `;
+        </div>
+    `;
     }).join('');
     
     // Attach drag event listeners
@@ -977,6 +977,9 @@ async function loadPlaylist(playlistId) {
             }
             
             showToast(`Playlist loaded: ${data.name}`, 'success');
+            
+            // Load playlist to audio player
+            loadPlaylistToPlayer(currentPlaylistTracks, data.name);
         } else {
             showToast(`Failed to load playlist: ${data.error}`, 'error');
         }
@@ -986,30 +989,6 @@ async function loadPlaylist(playlistId) {
     }
 }
 
-function renderLoadedPlaylistTable(tracks) {
-    const tbody = document.getElementById('loadedPlaylistTableBody');
-    if (!tbody) return;
-    
-    if (tracks.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No tracks in playlist</td></tr>';
-        return;
-    }
-    
-    tbody.innerHTML = tracks.map((track, index) => {
-        const statusIcon = track.status === 'completed' ? '✅' : track.status === 'error' ? '❌' : '⏳';
-        return `
-            <tr class="table-row">
-                <td class="col-status">${index + 1}</td>
-                <td class="col-title">${escapeHtml(track.title || track.filename || '-')}</td>
-                <td class="col-artist">${escapeHtml(track.artist || '-')}</td>
-                <td class="col-bpm">${track.bpm ? track.bpm.toFixed(0) : '-'}</td>
-                <td class="col-key">${escapeHtml(track.key || '-')}</td>
-                <td class="col-energy">${track.energy ? track.energy.toFixed(2) : '-'}</td>
-                <td class="col-mood">${escapeHtml(track.mood || '-')}</td>
-            </tr>
-        `;
-    }).join('');
-}
 
 async function deletePlaylist(playlistId) {
     if (!confirm('Are you sure you want to delete this playlist? This action cannot be undone.')) {
@@ -1030,15 +1009,24 @@ async function deletePlaylist(playlistId) {
         if (data.success) {
             showToast('Playlist deleted successfully', 'success');
             
-            // Hide loaded playlist section if the deleted playlist was loaded
-            const loadedSection = document.getElementById('loadedPlaylistSection');
-            if (loadedSection && loadedSection.style.display !== 'none') {
-                // Check if the loaded playlist matches the deleted one
-                const loadedName = document.getElementById('loadedPlaylistName');
-                if (loadedName && savedPlaylistsData.find(p => p.id === playlistId && p.name === loadedName.textContent)) {
-                    loadedSection.style.display = 'none';
-                    currentPlaylistTracks = [];
+            // Stop player if deleted playlist is currently playing
+            if (audioPlayer.currentPlaylistName && savedPlaylistsData.find(p => p.id === playlistId && p.name === audioPlayer.currentPlaylistName)) {
+                if (audioPlayer.audio) {
+                    audioPlayer.audio.pause();
+                    audioPlayer.audio.src = '';
                 }
+                audioPlayer.playlist = [];
+                audioPlayer.currentIndex = -1;
+                const player = document.getElementById('audioPlayer');
+                if (player) {
+                    player.style.display = 'none';
+                    document.body.style.paddingBottom = '0';
+                }
+                // Close playlist section if open
+                const collapsible = document.getElementById('playerPlaylistCollapsible');
+                const section = document.querySelector('.audio-player-playlist-section');
+                if (collapsible) collapsible.style.display = 'none';
+                if (section) section.classList.remove('expanded');
             }
             
             loadSavedPlaylists();
@@ -1247,7 +1235,7 @@ function switchTab(tabName) {
     // Update Buttons
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     if (event && event.target) {
-        event.target.classList.add('active');
+    event.target.classList.add('active');
     } else {
         // Fallback: find button by text content
         document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -1665,7 +1653,7 @@ function queryLibrary() {
             currentLibraryTracks = data.tracks || [];
             document.getElementById('libraryCount').innerText = data.count || 0;
             renderLibraryTable(currentLibraryTracks);
-            showToast(`Found ${data.count} track${data.count !== 1 ? 's' : ''}`, 'success');
+                showToast(`Found ${data.count} track${data.count !== 1 ? 's' : ''}`, 'success');
         })
         .catch(error => {
             console.error('Query error:', error);
@@ -1679,71 +1667,67 @@ function queryLibrary() {
 /**
  * Export library to M3U playlist
  */
-function exportM3U() {
-    if (currentPlaylistTracks.length === 0) {
-        showToast('No playlist to export. Generate a playlist first.', 'warning');
+async function exportM3U() {
+    // Use audio player playlist if available, otherwise use currentPlaylistTracks
+    const tracks = audioPlayer.playlist && audioPlayer.playlist.length > 0 
+        ? audioPlayer.playlist 
+        : currentPlaylistTracks;
+    
+    if (!tracks || tracks.length === 0) {
+        showToast('No playlist to export. Load a playlist first.', 'warning');
         return;
     }
     
-    const btn = event.target;
-    setButtonLoading(btn, true);
-
-    fetch('/library/export/m3u', {
+    try {
+        const response = await fetch('/library/export/m3u', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tracks: currentPlaylistTracks })
-    })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            return res.json();
-        })
-        .then(data => {
-            showToast(`Playlist exported to: ${data.path}`, 'success', 6000);
-        })
-        .catch(error => {
+            body: JSON.stringify({ tracks: tracks })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        showToast(`M3U playlist exported to: ${data.path}`, 'success', 6000);
+    } catch (error) {
             console.error('Export error:', error);
             showToast(`Failed to export M3U: ${error.message}`, 'error');
-        })
-        .finally(() => {
-            setButtonLoading(btn, false);
-        });
+    }
 }
 
 /**
  * Export library to Rekordbox XML
  */
-function exportRekordbox() {
-    if (currentPlaylistTracks.length === 0) {
-        showToast('No playlist to export. Generate a playlist first.', 'warning');
+async function exportRekordbox() {
+    // Use audio player playlist if available, otherwise use currentPlaylistTracks
+    const tracks = audioPlayer.playlist && audioPlayer.playlist.length > 0 
+        ? audioPlayer.playlist 
+        : currentPlaylistTracks;
+    
+    if (!tracks || tracks.length === 0) {
+        showToast('No playlist to export. Load a playlist first.', 'warning');
         return;
     }
     
-    const btn = event.target;
-    setButtonLoading(btn, true);
-
-    fetch('/library/export/rekordbox', {
+    try {
+        const response = await fetch('/library/export/rekordbox', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tracks: currentPlaylistTracks })
-    })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            return res.json();
-        })
-        .then(data => {
+            body: JSON.stringify({ tracks: tracks })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
             showToast(`Rekordbox XML exported to: ${data.path}`, 'success', 6000);
-        })
-        .catch(error => {
+    } catch (error) {
             console.error('Export error:', error);
             showToast(`Failed to export Rekordbox XML: ${error.message}`, 'error');
-        })
-        .finally(() => {
-            setButtonLoading(btn, false);
-        });
+    }
 }
 
 /**
@@ -2088,9 +2072,602 @@ async function removeDuplicates(dryRun = true) {
     }
 }
 
-// Initialize dual-range sliders when DOM is ready
+// ============================================
+// AUDIO PLAYER
+// ============================================
+
+let audioPlayer = {
+    audio: null,
+    playlist: [],
+    currentIndex: -1,
+    isPlaying: false,
+    isShuffled: false,
+    isRepeating: false,
+    isMuted: false,
+    volume: 1.0,
+    shuffledPlaylist: [],
+    currentPlaylistName: null,
+    shouldAutoPlay: false
+};
+
+// Initialize audio player
+function initAudioPlayer() {
+    audioPlayer.audio = document.getElementById('audioElement');
+    if (!audioPlayer.audio) {
+        console.error('Audio element not found');
+        return;
+    }
+    
+    // Set preload and crossOrigin
+    audioPlayer.audio.preload = 'metadata';
+    audioPlayer.audio.crossOrigin = 'anonymous';
+    
+    // Event listeners
+    audioPlayer.audio.addEventListener('loadedmetadata', () => {
+        console.log('Audio metadata loaded');
+        updateAudioPlayerTime();
+    });
+    audioPlayer.audio.addEventListener('timeupdate', updateAudioPlayerProgress);
+    audioPlayer.audio.addEventListener('ended', audioPlayerNext);
+    audioPlayer.audio.addEventListener('error', handleAudioError);
+    audioPlayer.audio.addEventListener('play', () => {
+        audioPlayer.isPlaying = true;
+        updatePlayButton();
+    });
+    audioPlayer.audio.addEventListener('pause', () => {
+        audioPlayer.isPlaying = false;
+        updatePlayButton();
+    });
+    audioPlayer.audio.addEventListener('canplay', () => {
+        console.log('Audio can play');
+        // Auto-play when loading from playlist card
+        if (audioPlayer.shouldAutoPlay) {
+            audioPlayer.shouldAutoPlay = false;
+            const playPromise = audioPlayer.audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(err => {
+                    console.error('Error auto-playing audio:', err);
+                    if (err.name === 'NotAllowedError') {
+                        showToast('Autoplay blocked. Click play to start.', 'warning');
+                    }
+                });
+            }
+        }
+    });
+    audioPlayer.audio.addEventListener('canplaythrough', () => {
+        console.log('Audio can play through');
+    });
+    audioPlayer.audio.addEventListener('loadstart', () => {
+        console.log('Audio load started');
+    });
+    
+    // Set initial volume
+    audioPlayer.audio.volume = audioPlayer.volume;
+    
+    console.log('Audio player initialized');
+}
+
+function loadPlaylistToPlayer(tracks, playlistName) {
+    if (!tracks || tracks.length === 0) {
+        showToast('No tracks in playlist', 'warning');
+        return;
+    }
+    
+    audioPlayer.playlist = tracks;
+    audioPlayer.currentIndex = 0;
+    audioPlayer.shuffledPlaylist = [];
+    audioPlayer.currentPlaylistName = playlistName;
+    audioPlayer.shouldAutoPlay = true; // Flag to auto-play when audio is ready
+    
+    // Show player
+    const player = document.getElementById('audioPlayer');
+    if (player) {
+        player.style.display = 'block';
+        // Update body padding to account for sticky player
+        if (document.body.style.paddingBottom !== '90px') {
+            document.body.style.paddingBottom = '90px';
+        }
+        // Update playlist section and button
+        renderPlaylistSection();
+    }
+    
+    // Update playlist info
+    const playlistInfo = document.getElementById('playerPlaylistInfo');
+    const playlistNameEl = document.getElementById('playerPlaylistName');
+    const trackCountEl = document.getElementById('playerTrackCount');
+    const exportActions = document.getElementById('playerExportActions');
+    
+    if (playlistInfo) playlistInfo.style.display = 'flex';
+    if (playlistNameEl) playlistNameEl.textContent = playlistName;
+    if (trackCountEl) trackCountEl.textContent = `${tracks.length} tracks`;
+    if (exportActions) exportActions.style.display = 'flex';
+    
+    // Load first track and start playing
+    loadTrackToPlayer(0);
+    
+    // Start playing after a short delay to ensure audio is loaded
+    setTimeout(() => {
+        if (audioPlayer.audio) {
+            const playPromise = audioPlayer.audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(err => {
+                    console.error('Error playing audio:', err);
+                    if (err.name === 'NotAllowedError') {
+                        showToast('Autoplay blocked. Click play to start.', 'warning');
+                    } else {
+                        showToast(`Error playing audio: ${err.message}`, 'error');
+                    }
+                });
+            }
+        }
+    }, 100);
+}
+
+function loadTrackToPlayer(index) {
+    if (index < 0 || index >= audioPlayer.playlist.length) return;
+    
+    const track = audioPlayer.playlist[index];
+    audioPlayer.currentIndex = index;
+    
+    // Update playlist section if visible
+    const collapsible = document.getElementById('playerPlaylistCollapsible');
+    if (collapsible && collapsible.style.display !== 'none') {
+        renderPlaylistSection();
+    }
+    
+    if (!track.path) {
+        showToast('Track path not available', 'error');
+        return;
+    }
+    
+    // Update UI
+    updatePlayerTrackInfo(track);
+    
+    // Load audio - use backend endpoint to serve files
+    if (audioPlayer.audio) {
+        // Encode the file path properly - encode each segment separately
+        let audioPath = track.path;
+        
+        // Remove leading slash, split, encode each segment, then join with /
+        // This preserves the path structure while encoding special characters
+        const pathParts = audioPath.startsWith('/') 
+            ? audioPath.substring(1).split('/').map(part => encodeURIComponent(part))
+            : audioPath.split('/').map(part => encodeURIComponent(part));
+        const encodedPath = pathParts.join('/');
+        
+        const audioUrl = `/audio/${encodedPath}`;
+        console.log('Loading audio:', audioUrl);
+        console.log('Original path:', track.path);
+        
+        const ext = track.path.split('.').pop().toLowerCase();
+        console.log('File extension:', ext);
+        
+        // Check browser support before loading
+        const mimeTypes = {
+            'mp3': 'audio/mpeg',
+            'wav': 'audio/wav',
+            'flac': 'audio/flac',
+            'ogg': 'audio/ogg',
+            'm4a': 'audio/mp4',
+            'aac': 'audio/aac'
+        };
+        const mimeType = mimeTypes[ext] || 'audio/mpeg';
+        const canPlay = audioPlayer.audio.canPlayType(mimeType);
+        console.log(`Browser can play ${ext} (${mimeType}):`, canPlay);
+        
+        // Clear previous source
+        audioPlayer.audio.src = '';
+        audioPlayer.audio.load();
+        
+        // Set new source
+        audioPlayer.audio.src = audioUrl;
+        
+        // Add error handler
+        const errorHandler = (e) => {
+            console.error('Audio load error:', e);
+            console.error('Audio src:', audioPlayer.audio.src);
+            console.error('Error code:', audioPlayer.audio.error?.code);
+            console.error('Error message:', audioPlayer.audio.error?.message);
+            
+            // Try to fetch the file to check if it's accessible
+            fetch(audioUrl)
+                .then(async response => {
+                    console.log('File GET request status:', response.status);
+                    console.log('File Content-Type:', response.headers.get('Content-Type'));
+                    console.log('File Content-Length:', response.headers.get('Content-Length'));
+                    
+                    const contentType = response.headers.get('Content-Type');
+                    
+                    if (!response.ok) {
+                        // Try to get error message from JSON response
+                        let errorMsg = `Server error: ${response.status} ${response.statusText}`;
+                        try {
+                            const errorData = await response.json();
+                            if (errorData.error) {
+                                errorMsg = errorData.error;
+                            }
+                        } catch (e) {
+                            // Not JSON, use status text
+                        }
+                        showToast(errorMsg, 'error');
+                    } else if (contentType && !contentType.startsWith('audio/')) {
+                        // Server returned wrong content type - might be an error JSON
+                        try {
+                            const errorData = await response.json();
+                            if (errorData.error) {
+                                showToast(`Server error: ${errorData.error}`, 'error');
+                            } else {
+                                showToast(`Invalid Content-Type: ${contentType}. Expected audio/*`, 'error');
+                            }
+                        } catch (e) {
+                            showToast(`Invalid Content-Type: ${contentType}. Expected audio/*`, 'error');
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error('File GET request failed:', err);
+                    showToast(`Cannot access audio file: ${err.message}`, 'error');
+                });
+            
+            let errorMsg = `Error loading audio: ${track.title || track.filename}`;
+            if (audioPlayer.audio.error) {
+                const errorCode = audioPlayer.audio.error.code;
+                if (errorCode === 4) {
+                    errorMsg = `Audio format not supported. File: ${ext}`;
+                    console.error('Browser audio support:', {
+                        mp3: audioPlayer.audio.canPlayType('audio/mpeg'),
+                        wav: audioPlayer.audio.canPlayType('audio/wav'),
+                        flac: audioPlayer.audio.canPlayType('audio/flac'),
+                        ogg: audioPlayer.audio.canPlayType('audio/ogg'),
+                        m4a: audioPlayer.audio.canPlayType('audio/mp4')
+                    });
+                } else if (errorCode === 2) {
+                    errorMsg = 'Network error loading audio file';
+                } else if (errorCode === 3) {
+                    errorMsg = 'Audio decoding error';
+                }
+            }
+            // Don't show duplicate toast if fetch already showed one
+            setTimeout(() => showToast(errorMsg, 'error'), 100);
+        };
+        
+        audioPlayer.audio.addEventListener('error', errorHandler, { once: true });
+        audioPlayer.audio.addEventListener('loadstart', () => console.log('Audio load started'));
+        audioPlayer.audio.addEventListener('loadeddata', () => console.log('Audio data loaded'));
+        audioPlayer.audio.addEventListener('canplay', () => {
+            console.log('Audio can play');
+            // Auto-play when loading from playlist card
+            if (audioPlayer.shouldAutoPlay) {
+                audioPlayer.shouldAutoPlay = false;
+                const playPromise = audioPlayer.audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => {
+                        console.error('Error auto-playing audio:', err);
+                        if (err.name === 'NotAllowedError') {
+                            showToast('Autoplay blocked. Click play to start.', 'warning');
+                        }
+                    });
+                }
+            }
+        });
+        
+        // Load the audio
+        audioPlayer.audio.load();
+    }
+}
+
+function updatePlayerTrackInfo(track) {
+    const titleEl = document.getElementById('playerTrackTitle');
+    const artistEl = document.getElementById('playerTrackArtist');
+    const albumArtEl = document.getElementById('playerAlbumArt');
+    const albumArtPlaceholder = document.getElementById('playerAlbumArtPlaceholder');
+    
+    if (titleEl) titleEl.textContent = track.title || track.filename || 'Unknown Title';
+    if (artistEl) artistEl.textContent = track.artist || 'Unknown Artist';
+    
+    // Update album art
+    const albumArtUrl = track.album_art || track.album_art_url || track.image_url;
+    if (albumArtEl && albumArtPlaceholder) {
+        if (albumArtUrl) {
+            albumArtEl.src = albumArtUrl;
+            albumArtEl.style.display = 'block';
+            albumArtPlaceholder.style.display = 'none';
+        } else {
+            albumArtEl.style.display = 'none';
+            albumArtPlaceholder.style.display = 'block';
+        }
+    }
+}
+
+function audioPlayerToggle() {
+    if (!audioPlayer.audio) return;
+    
+    if (audioPlayer.isPlaying) {
+        audioPlayer.audio.pause();
+    } else {
+        if (audioPlayer.currentIndex === -1 && audioPlayer.playlist.length > 0) {
+            loadTrackToPlayer(0);
+        }
+        
+        const playPromise = audioPlayer.audio.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(err => {
+                console.error('Error playing audio:', err);
+                console.error('Audio src:', audioPlayer.audio.src);
+                console.error('Current track:', audioPlayer.playlist[audioPlayer.currentIndex]);
+                
+                // More specific error messages
+                if (err.name === 'NotAllowedError') {
+                    showToast('Autoplay blocked. Click play again.', 'warning');
+                } else if (err.name === 'NotSupportedError') {
+                    showToast('Audio format not supported', 'error');
+                } else {
+                    showToast(`Error playing audio: ${err.message}`, 'error');
+                }
+            });
+        }
+    }
+}
+
+function audioPlayerNext() {
+    if (audioPlayer.playlist.length === 0) return;
+    
+    let nextIndex;
+    if (audioPlayer.isShuffled) {
+        if (audioPlayer.shuffledPlaylist.length === 0) {
+            // Create shuffled playlist
+            audioPlayer.shuffledPlaylist = [...Array(audioPlayer.playlist.length).keys()];
+            for (let i = audioPlayer.shuffledPlaylist.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [audioPlayer.shuffledPlaylist[i], audioPlayer.shuffledPlaylist[j]] = 
+                    [audioPlayer.shuffledPlaylist[j], audioPlayer.shuffledPlaylist[i]];
+            }
+        }
+        const currentShuffledIndex = audioPlayer.shuffledPlaylist.indexOf(audioPlayer.currentIndex);
+        if (currentShuffledIndex < audioPlayer.shuffledPlaylist.length - 1) {
+            nextIndex = audioPlayer.shuffledPlaylist[currentShuffledIndex + 1];
+        } else {
+            nextIndex = audioPlayer.shuffledPlaylist[0]; // Loop back
+        }
+    } else {
+        nextIndex = (audioPlayer.currentIndex + 1) % audioPlayer.playlist.length;
+        if (nextIndex === 0 && !audioPlayer.isRepeating) {
+            // End of playlist
+            audioPlayer.audio.pause();
+            return;
+        }
+    }
+    
+    loadTrackToPlayer(nextIndex);
+    if (audioPlayer.isPlaying) {
+        audioPlayer.audio.play();
+    }
+}
+
+function audioPlayerPrevious() {
+    if (audioPlayer.playlist.length === 0) return;
+    
+    let prevIndex;
+    if (audioPlayer.isShuffled && audioPlayer.shuffledPlaylist.length > 0) {
+        const currentShuffledIndex = audioPlayer.shuffledPlaylist.indexOf(audioPlayer.currentIndex);
+        if (currentShuffledIndex > 0) {
+            prevIndex = audioPlayer.shuffledPlaylist[currentShuffledIndex - 1];
+        } else {
+            prevIndex = audioPlayer.shuffledPlaylist[audioPlayer.shuffledPlaylist.length - 1];
+        }
+    } else {
+        prevIndex = audioPlayer.currentIndex - 1;
+        if (prevIndex < 0) {
+            prevIndex = audioPlayer.playlist.length - 1;
+        }
+    }
+    
+    loadTrackToPlayer(prevIndex);
+    if (audioPlayer.isPlaying) {
+        audioPlayer.audio.play();
+    }
+}
+
+function audioPlayerSeek(event) {
+    if (!audioPlayer.audio) return;
+    const percent = event.target.value / 100;
+    audioPlayer.audio.currentTime = percent * audioPlayer.audio.duration;
+}
+
+function audioPlayerSetVolume(event) {
+    const volume = event.target.value / 100;
+    audioPlayer.volume = volume;
+    if (audioPlayer.audio) {
+        audioPlayer.audio.volume = volume;
+    }
+    updateMuteButton();
+}
+
+function audioPlayerToggleMute() {
+    audioPlayer.isMuted = !audioPlayer.isMuted;
+    if (audioPlayer.audio) {
+        audioPlayer.audio.muted = audioPlayer.isMuted;
+    }
+    updateMuteButton();
+}
+
+function audioPlayerToggleShuffle() {
+    audioPlayer.isShuffled = !audioPlayer.isShuffled;
+    audioPlayer.shuffledPlaylist = []; // Reset shuffle order
+    const btn = document.getElementById('playerShuffleBtn');
+    if (btn) {
+        btn.style.opacity = audioPlayer.isShuffled ? '1' : '0.5';
+    }
+}
+
+function audioPlayerToggleRepeat() {
+    audioPlayer.isRepeating = !audioPlayer.isRepeating;
+    const btn = document.getElementById('playerRepeatBtn');
+    if (btn) {
+        btn.style.opacity = audioPlayer.isRepeating ? '1' : '0.5';
+    }
+}
+
+function audioPlayerTogglePlaylistSection() {
+    // Toggle collapsible playlist section
+    const collapsible = document.getElementById('playerPlaylistCollapsible');
+    const section = document.querySelector('.audio-player-playlist-section');
+    
+    if (!collapsible || !section) return;
+    
+    const isExpanded = collapsible.style.display !== 'none';
+    
+    if (isExpanded) {
+        collapsible.style.display = 'none';
+        section.classList.remove('expanded');
+    } else {
+        renderPlaylistSection();
+        collapsible.style.display = 'block';
+        section.classList.add('expanded');
+    }
+}
+
+function renderPlaylistSection() {
+    const playlistList = document.getElementById('playerPlaylistList');
+    const toggleName = document.getElementById('playlistToggleName');
+    const toggleCount = document.getElementById('playlistToggleCount');
+    
+    if (!playlistList) return;
+    
+    // Update playlist button info
+    if (audioPlayer.playlist && audioPlayer.playlist.length > 0) {
+        const count = audioPlayer.playlist.length;
+        const playlistName = audioPlayer.currentPlaylistName || 'Playlist';
+        
+        if (toggleName) {
+            toggleName.textContent = playlistName;
+        }
+        if (toggleCount) {
+            toggleCount.textContent = `${count} ${count === 1 ? 'track' : 'tracks'}`;
+        }
+    } else {
+        if (toggleName) toggleName.textContent = 'Playlist';
+        if (toggleCount) toggleCount.textContent = '0 tracks';
+    }
+    
+    if (!audioPlayer.playlist || audioPlayer.playlist.length === 0) {
+        playlistList.innerHTML = '<div class="empty-state" style="padding: 1.5rem; text-align: center; color: var(--text-secondary); font-size: 0.875rem;">No tracks in playlist</div>';
+        if (headerInfo) headerInfo.textContent = '';
+        return;
+    }
+    
+    playlistList.innerHTML = audioPlayer.playlist.map((track, index) => {
+        const isActive = index === audioPlayer.currentIndex;
+        return `
+            <div class="audio-player-playlist-item ${isActive ? 'active' : ''}" onclick="playTrackFromPlaylist(${index})">
+                <div class="audio-player-playlist-item-number">${index + 1}</div>
+                <div class="audio-player-playlist-item-info">
+                    <div class="audio-player-playlist-item-title">${escapeHtml(track.title || track.filename || 'Unknown')}</div>
+                    <div class="audio-player-playlist-item-artist">${escapeHtml(track.artist || 'Unknown Artist')}</div>
+                </div>
+                <div class="audio-player-playlist-item-meta">
+                    ${track.bpm ? `<span>${track.bpm} BPM</span>` : ''}
+                    ${track.key ? `<span>${escapeHtml(track.key)}</span>` : ''}
+                    ${track.energy !== undefined && track.energy !== null ? `<span>${Math.round(track.energy * 100)}% Energy</span>` : ''}
+                    ${track.mood ? `<span>${escapeHtml(track.mood)}</span>` : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function playTrackFromPlaylist(index) {
+    if (!audioPlayer.playlist || index < 0 || index >= audioPlayer.playlist.length) return;
+    
+    // Load the track
+    loadTrackToPlayer(index);
+    
+    // Start playing
+    if (audioPlayer.audio) {
+        const playPromise = audioPlayer.audio.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(err => {
+                console.error('Error playing audio:', err);
+                if (err.name === 'NotAllowedError') {
+                    showToast('Autoplay blocked. Click play again.', 'warning');
+                } else {
+                    showToast(`Error playing audio: ${err.message}`, 'error');
+                }
+            });
+        }
+    }
+}
+
+function updatePlayButton() {
+    const btn = document.getElementById('playerPlayBtn');
+    if (btn) {
+        btn.textContent = audioPlayer.isPlaying ? '⏸' : '▶';
+    }
+}
+
+function updateMuteButton() {
+    const btn = document.getElementById('playerMuteBtn');
+    if (btn) {
+        if (audioPlayer.isMuted || audioPlayer.volume === 0) {
+            btn.textContent = '🔇';
+        } else if (audioPlayer.volume < 0.5) {
+            btn.textContent = '🔉';
+        } else {
+            btn.textContent = '🔊';
+        }
+    }
+}
+
+function updateAudioPlayerProgress() {
+    if (!audioPlayer.audio) return;
+    
+    const progressBar = document.getElementById('playerProgressBar');
+    const progressBarFill = document.getElementById('playerProgressBarFill');
+    
+    if (audioPlayer.audio.duration) {
+        const percent = (audioPlayer.audio.currentTime / audioPlayer.audio.duration) * 100;
+        
+        // Update progress bar
+        if (progressBar) progressBar.value = percent;
+        if (progressBarFill) progressBarFill.style.width = percent + '%';
+    }
+    
+    updateAudioPlayerTime();
+}
+
+function updateAudioPlayerTime() {
+    if (!audioPlayer.audio) return;
+    
+    const currentTimeEl = document.getElementById('playerCurrentTime');
+    const totalTimeEl = document.getElementById('playerTotalTime');
+    
+    if (currentTimeEl) {
+        currentTimeEl.textContent = formatTime(audioPlayer.audio.currentTime || 0);
+    }
+    if (totalTimeEl && audioPlayer.audio.duration) {
+        totalTimeEl.textContent = formatTime(audioPlayer.audio.duration);
+    }
+}
+
+function formatTime(seconds) {
+    if (isNaN(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
+
+function handleAudioError(event) {
+    console.error('Audio error:', event);
+    showToast('Error loading audio file', 'error');
+}
+
+// Initialize audio player when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDualRangeSliders);
+    document.addEventListener('DOMContentLoaded', () => {
+        initAudioPlayer();
+        initDualRangeSliders();
+    });
 } else {
+    initAudioPlayer();
     initDualRangeSliders();
 }

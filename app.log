@@ -216,3 +216,724 @@ INFO:     127.0.0.1:60273 - "POST /library/query HTTP/1.1" 200 OK
 INFO:     127.0.0.1:60273 - "GET /library/playlists HTTP/1.1" 200 OK
 INFO:     127.0.0.1:60273 - "GET /library/playlists/test HTTP/1.1" 200 OK
 INFO:     127.0.0.1:60277 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60351 - "GET /library/playlists HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81568]
+INFO:     Started server process [82315]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'metadata.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82315]
+INFO:     Started server process [82355]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82355]
+INFO:     Started server process [82371]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:60504 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60504 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60505 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60506 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60505 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60505 - "GET /library/playlists/test HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82371]
+INFO:     Started server process [82409]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'analyzer.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82409]
+INFO:     Started server process [82432]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82432]
+INFO:     Started server process [82456]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:60623 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60623 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60624 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60625 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60624 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60633 - "GET /library/playlists/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60695 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:60695 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60696 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60697 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60696 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60743 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:60743 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60744 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:60745 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60743 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60919 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:60919 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60920 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60921 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60920 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60922 - "GET /library/playlists/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60927 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60927 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60944 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60947 - "POST /library/save_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60947 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60954 - "POST /library/generate_smart_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60958 - "POST /library/save_playlist HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60958 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60958 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60959 - "GET /library/playlists/Progressive HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82456]
+INFO:     Started server process [82934]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82934]
+INFO:     Started server process [82949]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82949]
+INFO:     Started server process [82956]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61160 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61161 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61160 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61162 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61161 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61161 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61161 - "GET /library/playlists/Progressive HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61161 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61308 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:61308 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61309 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61310 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61309 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61309 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61309 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [82956]
+INFO:     Started server process [83119]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83119]
+INFO:     Started server process [83132]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83132]
+INFO:     Started server process [83147]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61435 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61435 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:61436 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61437 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61436 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61436 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 558, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61436 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83147]
+INFO:     Started server process [83168]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83168]
+INFO:     Started server process [83176]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83176]
+INFO:     Started server process [83184]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83184]
+INFO:     Started server process [83197]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61545 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61545 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:61546 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61547 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61546 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61546 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 568, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61546 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61558 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 568, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61558 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 568, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Yet More - Brenda Bradley.mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61559 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/Yet%20More%20-%20Brenda%20Bradley.mp3 HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 568, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/We Are The People (Empire of the Sun) - me n ü remix.mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61559 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/We%20Are%20The%20People%20%28Empire%20of%20the%20Sun%29%20-%20me%20n%20%C3%BC%20remix.mp3 HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 568, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Maceo Plex - Conjure Dreams [Drumcode].mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61585 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/Maceo%20Plex%20-%20Conjure%20Dreams%20%5BDrumcode%5D.mp3 HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83197]
+INFO:     Started server process [83230]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83230]
+INFO:     Started server process [83235]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61658 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61658 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:61659 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61660 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61659 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61659 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61659 - "HEAD /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:61670 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61670 - "HEAD /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 405 Method Not Allowed
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83235]
+INFO:     Started server process [83258]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83258]
+INFO:     Started server process [83266]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83266]
+INFO:     Started server process [83280]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83280]
+INFO:     Started server process [83289]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61758 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61758 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:61759 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61760 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61759 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61759 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 569, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61759 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 569, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61759 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61759 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 569, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61759 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 200 OK
+Traceback (most recent call last):
+  File "/Users/tharunk/.gemini/antigravity/scratch/music-library-analyzer/server.py", line 569, in serve_audio
+    if not is_audio_file(decoded_path):
+           ^^^^^^^^^^^^^
+NameError: name 'is_audio_file' is not defined
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Error serving audio: name 'is_audio_file' is not defined
+INFO:     127.0.0.1:61759 - "GET /audio//Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83289]
+INFO:     Started server process [83327]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83327]
+INFO:     Started server process [83329]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83329]
+INFO:     Started server process [83347]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83347]
+INFO:     Started server process [83386]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [83386]
+INFO:     Started server process [83408]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61950 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61950 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:61951 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61952 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61951 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61951 - "GET /library/playlists/test HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:61951 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:61953 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:61954 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:61957 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:61962 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DONT BLINK - GIN AND TONIC (Extended Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DONT BLINK - GIN AND TONIC (Extended Mix).mp3
+INFO:     127.0.0.1:61962 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DONT%20BLINK%20-%20GIN%20AND%20TONIC%20%28Extended%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+INFO:     127.0.0.1:61964 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DJ%20Wady%20%26%20Patrick%20M%20-%20No%20Time%20for%20Hulk%20%28Camelphat%20Re-Fix%20-%20%28Erik%20Hagleton%202018%20Vocal%20Edit%29%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+INFO:     127.0.0.1:62040 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Bilgehan%20%C3%9Cnver%20-%20Cant%20Stop%20%28Origina%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62088 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62097 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62112 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62150 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:62150 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62151 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62152 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62151 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62151 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62151 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+INFO:     127.0.0.1:62151 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62161 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+INFO:     127.0.0.1:62162 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Sean Doron & Yamagucci - Spinning Around (Abracadabra).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Sean Doron & Yamagucci - Spinning Around (Abracadabra).mp3
+INFO:     127.0.0.1:62261 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Sean%20Doron%20%26%20Yamagucci%20-%20Spinning%20Around%20%28Abracadabra%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62334 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:62334 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62335 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62336 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62335 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62335 - "GET /library/playlists/Progressive HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:62335 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62341 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:62341 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Maceo Plex - Conjure Dreams [Drumcode].mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Maceo Plex - Conjure Dreams [Drumcode].mp3
+INFO:     127.0.0.1:62342 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Maceo%20Plex%20-%20Conjure%20Dreams%20%5BDrumcode%5D.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Bebbo - Reflections (Original Mix) [Stereo Productions].mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Bebbo - Reflections (Original Mix) [Stereo Productions].mp3
+INFO:     127.0.0.1:62343 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Bebbo%20-%20Reflections%20%28Original%20Mix%29%20%5BStereo%20Productions%5D.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Sean Doron & Yamagucci - Spinning Around (Abracadabra).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Sean Doron & Yamagucci - Spinning Around (Abracadabra).mp3
+INFO:     127.0.0.1:62344 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Sean%20Doron%20%26%20Yamagucci%20-%20Spinning%20Around%20%28Abracadabra%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62509 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:62509 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62510 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62511 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62510 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62510 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+INFO:     127.0.0.1:62510 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Sean Doron & Yamagucci - Spinning Around (Abracadabra).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Sean Doron & Yamagucci - Spinning Around (Abracadabra).mp3
+INFO:     127.0.0.1:62512 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Sean%20Doron%20%26%20Yamagucci%20-%20Spinning%20Around%20%28Abracadabra%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62513 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+INFO:     127.0.0.1:62513 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Bilgehan%20%C3%9Cnver%20-%20Cant%20Stop%20%28Origina%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/We Are The People (Empire of the Sun) - me n ü remix.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/We Are The People (Empire of the Sun) - me n ü remix.mp3
+INFO:     127.0.0.1:62520 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/We%20Are%20The%20People%20%28Empire%20of%20the%20Sun%29%20-%20me%20n%20%C3%BC%20remix.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+INFO:     127.0.0.1:62530 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62652 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:62652 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62653 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62654 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62653 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62653 - "GET /library/playlists/test HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:62653 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62663 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:62664 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62735 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62816 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:62817 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:62816 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62818 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62816 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62816 - "GET /library/playlists/test HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DONT BLINK - GIN AND TONIC (Extended Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DONT BLINK - GIN AND TONIC (Extended Mix).mp3
+INFO:     127.0.0.1:62819 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DONT%20BLINK%20-%20GIN%20AND%20TONIC%20%28Extended%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62820 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+INFO:     127.0.0.1:62820 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DJ%20Wady%20%26%20Patrick%20M%20-%20No%20Time%20for%20Hulk%20%28Camelphat%20Re-Fix%20-%20%28Erik%20Hagleton%202018%20Vocal%20Edit%29%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+INFO:     127.0.0.1:62821 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Bilgehan%20%C3%9Cnver%20-%20Cant%20Stop%20%28Origina%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Fahlberg - For You.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Fahlberg - For You.mp3
+INFO:     127.0.0.1:62823 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Fahlberg%20-%20For%20You.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+INFO:     127.0.0.1:62825 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Oliver Koletzki - Copal.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Oliver Koletzki - Copal.mp3
+INFO:     127.0.0.1:62826 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Oliver%20Koletzki%20-%20Copal.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Sean Doron & Yamagucci - Spinning Around (Abracadabra).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Sean Doron & Yamagucci - Spinning Around (Abracadabra).mp3
+INFO:     127.0.0.1:62827 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Sean%20Doron%20%26%20Yamagucci%20-%20Spinning%20Around%20%28Abracadabra%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:62828 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DONT BLINK - GIN AND TONIC (Extended Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DONT BLINK - GIN AND TONIC (Extended Mix).mp3
+INFO:     127.0.0.1:62829 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DONT%20BLINK%20-%20GIN%20AND%20TONIC%20%28Extended%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/We Are The People (Empire of the Sun) - me n ü remix.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/We Are The People (Empire of the Sun) - me n ü remix.mp3
+INFO:     127.0.0.1:62830 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/We%20Are%20The%20People%20%28Empire%20of%20the%20Sun%29%20-%20me%20n%20%C3%BC%20remix.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Jan Blomqvist - Something Says.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Jan Blomqvist - Something Says.mp3
+INFO:     127.0.0.1:62830 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Jan%20Blomqvist%20-%20Something%20Says.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Yet More - Brenda Bradley.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Yet More - Brenda Bradley.mp3
+INFO:     127.0.0.1:62831 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Yet%20More%20-%20Brenda%20Bradley.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+INFO:     127.0.0.1:62832 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Bilgehan%20%C3%9Cnver%20-%20Cant%20Stop%20%28Origina%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+INFO:     127.0.0.1:62833 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DJ%20Wady%20%26%20Patrick%20M%20-%20No%20Time%20for%20Hulk%20%28Camelphat%20Re-Fix%20-%20%28Erik%20Hagleton%202018%20Vocal%20Edit%29%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+INFO:     127.0.0.1:62842 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Bilgehan%20%C3%9Cnver%20-%20Cant%20Stop%20%28Origina%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Fahlberg - For You.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Fahlberg - For You.mp3
+INFO:     127.0.0.1:62843 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Fahlberg%20-%20For%20You.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62845 - "POST /library/query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62917 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62935 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:62935 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62936 - "GET /static/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:62937 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62935 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62935 - "GET /library/playlists/test HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:62935 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:62953 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:62954 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63032 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:63032 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63033 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63034 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63033 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63033 - "GET /library/playlists/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63033 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:63123 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:63123 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63124 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63125 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63124 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63124 - "GET /library/playlists/Progressive HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:63124 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63123 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:63128 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63227 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:63227 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63228 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63229 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63228 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63228 - "GET /library/playlists/test HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:63228 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63227 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:63230 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63339 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:63339 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63340 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63341 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63340 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63340 - "GET /library/playlists/test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63340 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+INFO:     127.0.0.1:63340 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DJ%20Wady%20%26%20Patrick%20M%20-%20No%20Time%20for%20Hulk%20%28Camelphat%20Re-Fix%20-%20%28Erik%20Hagleton%202018%20Vocal%20Edit%29%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Bilgehan Ünver - Cant Stop (Origina Mix).mp3
+INFO:     127.0.0.1:63360 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Bilgehan%20%C3%9Cnver%20-%20Cant%20Stop%20%28Origina%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Oliver Koletzki - Copal.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Oliver Koletzki - Copal.mp3
+INFO:     127.0.0.1:63361 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Oliver%20Koletzki%20-%20Copal.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+INFO:     127.0.0.1:63373 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DJ%20Wady%20%26%20Patrick%20M%20-%20No%20Time%20for%20Hulk%20%28Camelphat%20Re-Fix%20-%20%28Erik%20Hagleton%202018%20Vocal%20Edit%29%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DONT BLINK - GIN AND TONIC (Extended Mix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DONT BLINK - GIN AND TONIC (Extended Mix).mp3
+INFO:     127.0.0.1:63375 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DONT%20BLINK%20-%20GIN%20AND%20TONIC%20%28Extended%20Mix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:63376 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63438 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:63438 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:63439 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63440 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63439 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63439 - "GET /library/playlists/Progressive HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:63439 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63441 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:63442 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:63441 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/DJ Wady & Patrick M - No Time for Hulk (Camelphat Re-Fix - (Erik Hagleton 2018 Vocal Edit)).mp3
+INFO:     127.0.0.1:63443 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/DJ%20Wady%20%26%20Patrick%20M%20-%20No%20Time%20for%20Hulk%20%28Camelphat%20Re-Fix%20-%20%28Erik%20Hagleton%202018%20Vocal%20Edit%29%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Yet More - Brenda Bradley.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Yet More - Brenda Bradley.mp3
+INFO:     127.0.0.1:63444 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Yet%20More%20-%20Brenda%20Bradley.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/We Are The People (Empire of the Sun) - me n ü remix.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/We Are The People (Empire of the Sun) - me n ü remix.mp3
+INFO:     127.0.0.1:63446 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/We%20Are%20The%20People%20%28Empire%20of%20the%20Sun%29%20-%20me%20n%20%C3%BC%20remix.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Yet More - Brenda Bradley.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Yet More - Brenda Bradley.mp3
+INFO:     127.0.0.1:63446 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Yet%20More%20-%20Brenda%20Bradley.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63448 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+INFO:     127.0.0.1:63448 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63544 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:63544 - "GET /static/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:63545 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63546 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63545 - "GET /library/playlists HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63545 - "GET /library/playlists/test HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:63545 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63544 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/BEBBO - Esta Noche Tonite - Stereo Productions.mp3
+INFO:     127.0.0.1:63547 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/BEBBO%20-%20Esta%20Noche%20Tonite%20-%20Stereo%20Productions.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63549 - "GET /library/playlists/Roller%20coaster HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+INFO:     127.0.0.1:63549 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/WhoMadeWho & Rampa - UUUU (&ME Remix).mp3
+INFO:     127.0.0.1:63550 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/WhoMadeWho%20%26%20Rampa%20-%20UUUU%20%28%26ME%20Remix%29.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63551 - "GET /library/playlists/Progressive HTTP/1.1" 200 OK
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:63551 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+Serving audio file: /Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+Original file_path parameter: Users/tharunk/Music/Downloaded by MediaHuman/Hardt Antoine - Caban.mp3
+INFO:     127.0.0.1:63552 - "GET /audio/Users/tharunk/Music/Downloaded%20by%20MediaHuman/Hardt%20Antoine%20-%20Caban.mp3 HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:63553 - "POST /library/query HTTP/1.1" 200 OK

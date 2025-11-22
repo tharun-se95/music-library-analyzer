@@ -367,42 +367,88 @@
                     </div>
                 </section>
 
-                <!-- Loaded Playlist Details -->
-                <section class="card" id="loadedPlaylistSection" style="display: none; margin-top: 1.5rem;">
-                    <div class="table-header">
-                        <h3>📋 Playlist: <span id="loadedPlaylistName">-</span> (<span id="loadedPlaylistCount">0</span> tracks)</h3>
-                        <div class="export-actions">
-                            <button class="secondary-btn" onclick="exportM3U()">Export .m3u</button>
-                            <button class="secondary-btn" onclick="exportRekordbox()">Export XML</button>
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table id="loadedPlaylistTable" class="rekordbox-table">
-                            <thead>
-                                <tr>
-                                    <th class="col-status">#</th>
-                                    <th class="col-title sortable" onclick="sortPlaylistTable('title')">Title <span class="sort-indicator">↕</span></th>
-                                    <th class="col-artist sortable" onclick="sortPlaylistTable('artist')">Artist <span class="sort-indicator">↕</span></th>
-                                    <th class="col-bpm sortable" onclick="sortPlaylistTable('bpm')">BPM <span class="sort-indicator">↕</span></th>
-                                    <th class="col-key sortable" onclick="sortPlaylistTable('key')">Key <span class="sort-indicator">↕</span></th>
-                                    <th class="col-energy sortable" onclick="sortPlaylistTable('energy')">Energy <span class="sort-indicator">↕</span></th>
-                                    <th class="col-mood">Mood</th>
-                                </tr>
-                            </thead>
-                            <tbody id="loadedPlaylistTableBody">
-                                <tr>
-                                    <td colspan="7" class="empty-state">Load a playlist to see tracks</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
             </div>
         </main>
 
         <footer>
-            <p>&copy; 2025 <span class="studio-name">SkullKrush Studios</span>. All rights reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2025 <span class="studio-name">SkullKrush Studios</span>. All rights reserved.</p>
+            </div>
         </footer>
+        
+        <!-- Sticky Audio Player -->
+        <div class="audio-player-sticky" id="audioPlayer" style="display: none;">
+            <div class="audio-player-content">
+                <div class="audio-player-main">
+                    <div class="audio-player-info">
+                        <div class="audio-player-album-art">
+                            <img id="playerAlbumArt" src="" alt="Album Art" onerror="this.style.display='none'">
+                            <div class="audio-player-album-art-placeholder" id="playerAlbumArtPlaceholder">🎵</div>
+                        </div>
+                        <div class="audio-player-track-info">
+                            <div class="audio-player-track-title" id="playerTrackTitle">No track selected</div>
+                            <div class="audio-player-track-artist" id="playerTrackArtist">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="audio-player-controls-main">
+                        <div class="audio-player-controls">
+                            <button class="audio-player-btn" id="playerShuffleBtn" onclick="audioPlayerToggleShuffle()" title="Shuffle">
+                                🔀
+                            </button>
+                            <button class="audio-player-btn" id="playerPrevBtn" onclick="audioPlayerPrevious()" title="Previous">
+                                ⏮
+                            </button>
+                            <button class="audio-player-btn audio-player-btn-primary" id="playerPlayBtn" onclick="audioPlayerToggle()" title="Play">
+                                ▶
+                            </button>
+                            <button class="audio-player-btn" id="playerNextBtn" onclick="audioPlayerNext()" title="Next">
+                                ⏭
+                            </button>
+                            <button class="audio-player-btn" id="playerRepeatBtn" onclick="audioPlayerToggleRepeat()" title="Repeat">
+                                🔁
+                            </button>
+                        </div>
+                        <div class="audio-player-time-display">
+                            <span class="audio-player-time" id="playerCurrentTime">0:00</span>
+                            <span class="audio-player-time" id="playerTotalTime">0:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="audio-player-actions">
+                        <div class="audio-player-volume">
+                            <button class="audio-player-btn" id="playerMuteBtn" onclick="audioPlayerToggleMute()" title="Mute">
+                                🔊
+                            </button>
+                            <input type="range" class="audio-player-volume-bar" id="playerVolumeBar" min="0" max="100" value="100" oninput="audioPlayerSetVolume(event)">
+                        </div>
+                        <button class="audio-player-playlist-toggle-btn" id="playerPlaylistToggle" onclick="audioPlayerTogglePlaylistSection()" title="Toggle Playlist">
+                            <span class="playlist-toggle-content">
+                                <span class="playlist-toggle-name" id="playlistToggleName">Playlist</span>
+                                <span class="playlist-toggle-count" id="playlistToggleCount">0 tracks</span>
+                            </span>
+                            <span class="playlist-toggle-icon">▼</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar Divider -->
+                <div class="audio-player-progress-divider">
+                    <div class="audio-player-progress-bar-container">
+                        <input type="range" class="audio-player-progress-bar" id="playerProgressBar" min="0" max="100" value="0" oninput="audioPlayerSeek(event)">
+                        <div class="audio-player-progress-bar-fill" id="playerProgressBarFill"></div>
+                    </div>
+                </div>
+                
+                <!-- Collapsible Playlist Section -->
+                <div class="audio-player-playlist-section">
+                    <div class="audio-player-playlist-collapsible" id="playerPlaylistCollapsible" style="display: none;">
+                        <div id="playerPlaylistList" class="audio-player-playlist-list"></div>
+                    </div>
+                </div>
+            </div>
+            <audio id="audioElement" preload="metadata"></audio>
+        </div>
     </div>
     <script src="/static/app.js"></script>
 </body>
