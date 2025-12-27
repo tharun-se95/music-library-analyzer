@@ -28,8 +28,8 @@ class MetadataFetcher:
         if not self.sp:
             # Fallback if no Spotify client: use audio analysis for mood
             if audio_energy is not None:
-                # Normalize energy (0-700 typical range -> 0-1)
-                norm_energy = min(audio_energy / 700.0, 1.0)
+                # Normalize energy (0-100 range -> 0-1)
+                norm_energy = min(audio_energy / 100.0, 1.0)
                 mood_data = classify_mood(energy=norm_energy, key=key)
                 return {"mood": get_mood_string(mood_data)}
             return None
@@ -42,7 +42,7 @@ class MetadataFetcher:
             if not results['tracks']['items']:
                 # Fallback if track not found
                 if audio_energy is not None:
-                    norm_energy = min(audio_energy / 700.0, 1.0)
+                    norm_energy = min(audio_energy / 100.0, 1.0)
                     mood_data = classify_mood(energy=norm_energy, key=key)
                     return {"mood": get_mood_string(mood_data)}
                 return None
@@ -103,7 +103,7 @@ class MetadataFetcher:
             except Exception as e:
                 # Fallback: Use audio analysis energy if available
                 if audio_energy is not None:
-                    norm_energy = min(audio_energy / 700.0, 1.0)
+                    norm_energy = min(audio_energy / 100.0, 1.0)
                     mood_data = classify_mood(energy=norm_energy, key=key)
                     result['mood'] = get_mood_string(mood_data)
                 
@@ -112,7 +112,7 @@ class MetadataFetcher:
             print(f"Error fetching metadata for {artist} - {title}: {e}")
             # Fallback on error
             if audio_energy is not None:
-                norm_energy = min(audio_energy / 700.0, 1.0)
+                norm_energy = min(audio_energy / 100.0, 1.0)
                 mood_data = classify_mood(energy=norm_energy, key=key)
                 return {"mood": get_mood_string(mood_data)}
             return None

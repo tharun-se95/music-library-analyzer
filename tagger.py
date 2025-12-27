@@ -116,3 +116,45 @@ def has_analysis_tags(path):
     except Exception:
         return False
     return False
+
+def clear_analysis_tags(path):
+    """
+    Clears analysis tags (BPM, Key, Energy, etc.) from a file.
+    Used when force re-analyzing.
+    """
+    try:
+        audio = mutagen.File(path)
+        if audio is None:
+            return
+        
+        if isinstance(audio, MP3) or isinstance(audio, WAVE):
+            if audio.tags:
+                # Remove analysis tags
+                tags_to_remove = ['TBPM', 'TKEY']
+                for tag in tags_to_remove:
+                    if tag in audio.tags:
+                        del audio.tags[tag]
+                
+                # Remove custom TXXX tags
+                txxx_to_remove = []
+                for frame in audio.tags.values():
+                    if isinstance(frame, TXXX):
+                        desc = frame.desc.upper()
+                        if desc in ['ENERGY', 'MOOD', 'POPULARITY', 'DANCEABILITY', 'VALENCE', 'GENRES']:
+                            txxx_to_remove.append(frame)
+                
+                for frame in txxx_to_remove:
+                    audio.tags.remove(frame)
+                
+                audio.save()
+                print(f"Cleared analysis tags from {path}")
+        else:
+            # FLAC, OGG, etc.
+            tags_to_remove = ['bpm', 'key', 'energy', 'mood', 'popularity', 'danceability', 'valence', 'genres']
+            for tag in tags_to_remove:
+                if tag in audio:
+                    del audio[tag]
+            audio.save()
+            print(f"Cleared analysis tags from {path}")
+    except Exception as e:
+        print(f"Error clearing tags from {path}: {e}")

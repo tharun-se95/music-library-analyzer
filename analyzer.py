@@ -1,13 +1,58 @@
 import librosa
 import numpy as np
 import scipy.stats
+import mutagen
+from mutagen.mp3 import MP3
+from mutagen.wave import WAVE
+
+def get_mixed_in_key_data(path):
+    """
+    Check if file has Mixed in Key tags and extract them.
+    Returns dict with 'key' (standard notation) and 'bpm' if found, None otherwise.
+    """
+    try:
+        from camelot_wheel import is_camelot_code, camelot_to_key
+        
+        audio = mutagen.File(path)
+        if not audio:
+            return None
+        
+        mixed_key = None
+        mixed_bpm = None
+        
+        if isinstance(audio, MP3) or isinstance(audio, WAVE):
+            if audio.tags:
+                if 'TKEY' in audio.tags:
+                    key_value = audio.tags['TKEY'].text[0]
+                    if is_camelot_code(key_value):
+                        mixed_key = camelot_to_key(key_value)
+                if 'TBPM' in audio.tags:
+                    mixed_bpm = float(audio.tags['TBPM'].text[0])
+        else:
+            # FLAC, OGG, etc.
+            if 'key' in audio:
+                key_value = audio['key'][0]
+                if is_camelot_code(key_value):
+                    mixed_key = camelot_to_key(key_value)
+            if 'bpm' in audio:
+                mixed_bpm = float(audio['bpm'][0])
+        
+        if mixed_key and mixed_bpm:
+            return {"key": mixed_key, "bpm": mixed_bpm}
+        return None
+    except Exception:
+        return None
 
 def analyze_track(path):
     """
     Analyzes an audio file to extract BPM, Key, and Energy.
+    Checks for Mixed in Key tags first and uses them if available.
     Returns a dictionary with the analysis results.
     """
     try:
+        # Check for Mixed in Key data first
+        mixed_data = get_mixed_in_key_data(path)
+        
         # Get full duration first
         duration = librosa.get_duration(path=path)
         
@@ -15,16 +60,29 @@ def analyze_track(path):
         # Using a duration limit helps with performance on large libraries
         y, sr = librosa.load(path, duration=120)
         
-        bpm = estimate_bpm(y, sr)
-        key = estimate_key(y, sr)
+        # Use Mixed in Key BPM/Key if available, otherwise analyze
+        if mixed_data:
+            bpm = mixed_data['bpm']
+            key = mixed_data['key']
+            print(f"Using Mixed in Key data: BPM={bpm}, Key={key}")
+        else:
+            bpm = estimate_bpm(y, sr)
+            key = estimate_key(y, sr)
+        
+        # Always analyze energy (Mixed in Key doesn't provide this)
         energy = estimate_energy(y)
         
-        return {
+        result = {
             "bpm": int(round(bpm)),
             "key": key,
-            "energy": float(round(energy, 2)),
+            "energy": int(energy),  # Return as integer
             "duration": float(round(duration, 2))  # Duration in seconds
         }
+        
+        if mixed_data:
+            result["source"] = "Mixed in Key"
+        
+        return result
     except Exception as e:
         print(f"Error analyzing {path}: {e}")
         return None
@@ -86,7 +144,26 @@ def estimate_key(y, sr):
 def estimate_energy(y):
     # RMS energy
     rms = librosa.feature.rms(y=y)
-    # Return mean RMS scaled to 0-100 roughly (experimentally)
-    # Typical RMS values are small, let's normalize or just return raw mean for now
-    # A simple scaling:
-    return np.mean(rms) * 1000 # Arbitrary scaling for display
+    mean_rms = np.mean(rms)
+    
+    # Convert to dB (logarithmic scale is better for human perception of loudness)
+    # Add epsilon to avoid log(0)
+    db = 20 * np.log10(mean_rms + 1e-9)
+    
+    # Map dB to 0-100 range
+    # -50 dB is very quiet (background noise/silence) -> 0
+    # -5 dB is very loud (commercial master) -> 95-100
+    # -2 dB is extremely loud -> 100
+    
+    min_db = -50.0
+    max_db = -5.0
+    
+    # Linear interpolation within the dB range
+    if db < min_db:
+        energy = 0
+    elif db > max_db:
+        energy = 100
+    else:
+        energy = (db - min_db) / (max_db - min_db) * 100
+    
+    return int(round(energy))

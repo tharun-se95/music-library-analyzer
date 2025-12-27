@@ -39,8 +39,15 @@ KEY_TO_CAMELOT = {
     "D Minor": "7A",
 }
 
-# Reverse mapping for display
-CAMELOT_TO_KEY = {v: k for k, v in KEY_TO_CAMELOT.items() if "b" not in k.lower() or k.endswith("Major")}
+# Reverse mapping for display (Camelot code -> Standard notation)
+CAMELOT_TO_KEY = {
+    "8B": "C Major", "9B": "G Major", "10B": "D Major", "11B": "A Major", "12B": "E Major",
+    "1B": "B Major", "2B": "F# Major", "3B": "Db Major", "4B": "Ab Major", "5B": "Eb Major",
+    "6B": "Bb Major", "7B": "F Major",
+    "8A": "A Minor", "9A": "E Minor", "10A": "B Minor", "11A": "F# Minor", "12A": "C# Minor",
+    "1A": "G# Minor", "2A": "D# Minor", "3A": "Bb Minor", "4A": "F Minor", "5A": "C Minor",
+    "6A": "G Minor", "7A": "D Minor"
+}
 
 def normalize_key(key_string):
     """Normalize key string to match our mapping."""
@@ -82,7 +89,27 @@ def key_to_camelot(key_string):
 
 def camelot_to_key(camelot_code):
     """Convert Camelot code to standard key notation."""
+    if not camelot_code:
+        return None
+    # Normalize Camelot code (handle variations like "8A", "8a", " 8A ", "8-A")
+    camelot_code = str(camelot_code).strip().upper()
+    camelot_code = camelot_code.replace(" ", "").replace("-", "")
     return CAMELOT_TO_KEY.get(camelot_code)
+
+def is_camelot_code(key_string):
+    """Check if a string is a Camelot Wheel code (e.g., '8A', '11B')."""
+    if not key_string:
+        return False
+    key_string = str(key_string).strip().upper().replace(" ", "").replace("-", "")
+    # Camelot codes are 2-3 characters: number (1-12) + letter (A or B)
+    if len(key_string) < 2 or len(key_string) > 3:
+        return False
+    try:
+        number = int(key_string[:-1])
+        letter = key_string[-1]
+        return 1 <= number <= 12 and letter in ['A', 'B']
+    except (ValueError, IndexError):
+        return False
 
 def get_compatible_keys(camelot_code, compatibility_level="strict"):
     """
